@@ -1,31 +1,40 @@
 
-
-
-
-Stage:
+ID_Stage_001:
     vendor:
         "ASI"
 
+ID_Detector:
+    LOCI-CAMERA-001:
+        name: QCAM
+        manufacturer: QCAM
+        width_px: 1392
+        height_px: 1040
+        sensorpixelWidth_um : 6.5
+        sensorpixelHeight_um : 6.5
+        description : ~
+    LOCI-PMT-001:
+        name: QCAM
+        manufacturer: QCAM
+        width_px: 1392
+        height_px: 1040
+        sensorpixelWidth_um : 6.5
+        sensorpixelHeight_um : 6.5
+        description : ~
 
-
-Detector:
-    width:
-        0.0
-    height:
-        0.0
-
-ImagingMode:
-    name:
-        "Multiphoton"
-    pixelsize:
-        1.0
-
-ObjectiveLens:
-    # See https://www.microscope.healthcare.nikon.com/products/optics/selector
-    name: str
-    magnification: 1.0
-    NA: 1.0
-    WD: 170.0 #um
-    description: nil
-    manufacturer_id: nil
-
+ID_Objective:
+    LOCI-20x-001:
+        name: 20x Nikon 
+        magnification: 20.0
+        NA: 0.8
+        WD_um: 170.0 #um
+        description: https://www.microscope.healthcare.nikon.com/products/optics/selector
+        manufacturer_id: Nikon
+        
+    LOCI-4x-001:
+        name: 4x Nikon
+        magnification: 4.0
+        NA: 0.4
+        WD_um: 170.0 #um
+        description: https://www.microscope.healthcare.nikon.com/products/optics/selector
+        manufacturer_id: Nikon
+        

@@ -14,9 +14,12 @@ stage:
     low: -18000
     high: 0
   vendor: ASI
-objectiveLens: loci-20xNikon
+
 imagingMode:
   BF_20x:
+    isLSM : false
+    objectiveLens: LOCI-20x-001
+    pixelSize_um : ~
     pixelOffset:
       x: -600
       y: 10
@@ -24,17 +27,23 @@ imagingMode:
       z: 0
       f: 0
     objectivePositionLabel: 1
-    lampIntensity: 4
+    lampIntensity_V: 4
+    detector: LOCI-PMT-001
+    
   MPM_20X:
+    isLSM: true
+    objectiveLens: LOCI-20x-001
+    pixelSize_um : ~
     pixelOffset:
       x: -580
       y: -280
     stageoffset:
     z: 0
     f: 0
-  objectivePositionLabel: 2
-  lampIntensity: 5
-
+    objectivePositionLabel: 2
+    lampIntensity_V: 5
+    detector: LOCI-CAMERA-001
+  
 lamp:
   - LED-Dev1ao0
   - Voltage
