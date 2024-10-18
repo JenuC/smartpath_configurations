@@ -14,7 +14,6 @@ stage:
   vendor:
     Prior
 
-
 imagingMode:
   BF_10x:
     isLSM : false
@@ -43,8 +42,7 @@ imagingMode:
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
   BF_40x:
-    isLSM : false
-    objectiveLens: LOCI-40x-001
+    isLSM : false    
     pixelSize_um : 0.1142
     pixelOffset:
       x: 0
@@ -55,12 +53,8 @@ imagingMode:
     objectivePositionLabel: ~
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
-lamp:
-  - Manual
-  - No control
-objectiveSlider:
-  - Manual
-  - No control
+    objectiveLens: LOCI-40x-001 
+
 slideSize:
   x: 40000
   y: 20000
