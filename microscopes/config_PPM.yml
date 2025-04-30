@@ -1,4 +1,8 @@
 
+microscope:
+  name:
+    'PPM'
+
 stage:
   z_stage:
     'ZStage'
@@ -11,8 +15,7 @@ stage:
   zlimit: 
     low: 0.0
     high: 0.0
-  vendor:
-    Prior
+  vendor: Prior
 
 imagingMode:
   BF_10x:
