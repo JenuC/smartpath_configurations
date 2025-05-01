@@ -1,4 +1,7 @@
 
+microscope:
+  name: 'PPM'
+
 stage:
   z_stage:
     'ZStage'
@@ -58,3 +61,4 @@ imagingMode:
 slideSize:
   x: 40000
   y: 20000
+
