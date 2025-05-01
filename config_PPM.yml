@@ -3,14 +3,14 @@ stage:
   z_stage:
     'ZStage'
   xlimit: 
-    low: 33000.0 
-    high: -21000.0
+    low: -21000.0 
+    high: 33000.0
   ylimit: 
     low: -8000.0  
     high: 11000.0
   zlimit: 
-    low: 0.0
-    high: 0.0
+    low: -100
+    high: 100
   vendor:
     Prior
 
