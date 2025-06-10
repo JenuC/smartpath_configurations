@@ -12,7 +12,7 @@ stage:
     low: -8000.0  
     high: 11000.0
   zlimit: 
-    low: -100
+    low: -400
     high: 100
   vendor:
     Prior
@@ -57,7 +57,21 @@ imagingMode:
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
     objectiveLens: LOCI-40x-001 
-
+  PPM_10x:
+    isLSM : false
+    objectiveLens: LOCI-10x-001
+    pixelSize_um : 0.4537
+    pixelOffset:
+      x: 0
+      y: 0
+    stageoffset:
+      z: 0
+      f: 0
+    objectivePositionLabel: ~
+    lampIntensity_V: ~
+    detector: LOCI-CAMERA-002
+    ppm_plus: 5
+    ppm_minus: -5
 slideSize:
   x: 40000
   y: 20000
