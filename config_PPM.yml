@@ -72,6 +72,21 @@ imagingMode:
     detector: LOCI-CAMERA-002
     ppm_plus: 5
     ppm_minus: -5
+  PPM_20x:
+    isLSM : false
+    objectiveLens: LOCI-20x-002
+    pixelSize_um : 0.2271
+    pixelOffset:
+      x: 0
+      y: 0
+    stageoffset:
+      z: 0
+      f: 0
+    objectivePositionLabel: ~
+    lampIntensity_V: ~
+    detector: LOCI-CAMERA-002
+    ppm_plus: 5
+    ppm_minus: -5
 slideSize:
   x: 40000
   y: 20000
