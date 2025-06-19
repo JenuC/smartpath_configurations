@@ -70,8 +70,6 @@ imagingMode:
     objectivePositionLabel: ~
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     ppm_plus: 5
     ppm_minus: -5
   PPM_20x:
@@ -89,9 +87,6 @@ imagingMode:
     detector: LOCI-CAMERA-002
     ppm_plus: 5
     ppm_minus: -5
-=======
-=======
->>>>>>> Stashed changes
     ppm_plus:
       degrees: 5
       exposure_ms: 100
@@ -104,10 +99,6 @@ imagingMode:
     bf:
       degrees: 90
       exposure_ms: 5
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 slideSize:
   x: 40000
   y: 20000
