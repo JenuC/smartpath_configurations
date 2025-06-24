@@ -70,8 +70,6 @@ imagingMode:
     objectivePositionLabel: ~
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
-    ppm_plus: 5
-    ppm_minus: -5
   PPM_20x:
     isLSM : false
     objectiveLens: LOCI-20x-002
@@ -85,20 +83,7 @@ imagingMode:
     objectivePositionLabel: ~
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
-    ppm_plus: 5
-    ppm_minus: -5
-    ppm_plus:
-      degrees: 5
-      exposure_ms: 100
-    ppm_minus:
-      degrees: 5
-      exposure_ms: 100
-    ppm_zero:
-      degrees: 0
-      exposure_ms: 500
-    bf:
-      degrees: 90
-      exposure_ms: 5
+
 slideSize:
   x: 40000
   y: 20000
