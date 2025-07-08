@@ -18,6 +18,19 @@ stage:
     Prior
 
 imagingMode:
+  BF_4x:
+    isLSM : false
+    objectiveLens: LOCI-4x-002
+    pixelSize_um : 1.1389
+    pixelOffset:
+      x: 0
+      y: 0
+    stageoffset:
+      z: 0
+      f: 0
+    objectivePositionLabel: ~
+    lampIntensity_V: ~
+    detector: LOCI-CAMERA-002
   BF_10x:
     isLSM : false
     objectiveLens: LOCI-10x-001
@@ -33,7 +46,7 @@ imagingMode:
     detector: LOCI-CAMERA-002
   BF_20x:
     isLSM : false
-    objectiveLens: LOCI-20x-002
+    objectiveLens: LOCI-20x-003
     pixelSize_um : 0.2271
     pixelOffset:
       x: 0
@@ -72,7 +85,7 @@ imagingMode:
     detector: LOCI-CAMERA-002
   PPM_20x:
     isLSM : false
-    objectiveLens: LOCI-20x-002
+    objectiveLens: LOCI-20x-003
     pixelSize_um : 0.2271
     pixelOffset:
       x: 0

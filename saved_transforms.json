@@ -1,0 +1,17 @@
+{
+  "11": {
+    "name": "11",
+    "microscope": "PPM",
+    "mountingMethod": "Standard",
+    "transform": {
+      "m00": 0.250552,
+      "m10": 0.0,
+      "m01": 0.0,
+      "m11": 0.250552,
+      "m02": -5752.521984,
+      "m12": -9327.618983999999
+    },
+    "createdDate": "Jul 8, 2025, 10:24:05 AM",
+    "notes": "Created via alignment workflow"
+  }
+}

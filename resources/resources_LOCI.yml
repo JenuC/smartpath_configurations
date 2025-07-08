@@ -31,6 +31,14 @@ ID_Detector:
         sensorpixelWidth_um : 4.54
         sensorpixelHeight_um : 4.54
         description : ~
+    LOCI_CAMERA_003:
+        name: AP-3200T-USB
+        manufacturer: JAI
+        width_px: 1000
+        height_px: 1000
+        sensorpixelWidth_um : 4.54
+        sensorpixelHeight_um : 4.54
+        description : ~
 
 ID_Objective:
     LOCI_20x_001:
@@ -39,22 +47,22 @@ ID_Objective:
         NA: 0.75
         WD_um: 80 #um
         description: https://www.microscope.healthcare.nikon.com/products/optics/selector; "CFI Plan Apochromat Lambda D 20X, 0.75";
-        manufacturer_id: MRD70270
+        manufacturer_id: MRD70270 
         on_scope: CAMM
 
     LOCI_4x_001:
         name: 4x Nikon
         magnification: 4.0
-        NA: 0.2
-        WD_um: 20 #um
+        NA: 0.13
+        WD_um: 17200 #um
         description: https://www.edmundoptics.com/p/4x-objective-nikon-cfi-plan-fluor/30636/
-        manufacturer_id: MRD70040
+        manufacturer_id: MRH00045
         on_scope: CAMM
 
     LOCI_20x_002:
-        name: 20x Nikon 
+        name: 20x Olympus
         magnification: 20.0
-        NA: 0.8
+        NA: 0.5
         WD_um: 170.0 #um
         description: https://www.microscope.healthcare.nikon.com/products/optics/selector; "CFI Plan Apochromat Lambda D 20X, 0.75";
         manufacturer_id: 
