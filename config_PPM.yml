@@ -12,7 +12,7 @@ stage:
     low: -8000.0  
     high: 11000.0
   zlimit: 
-    low: -100
+    low: -400
     high: 100
   vendor:
     Prior
