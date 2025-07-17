@@ -9,7 +9,7 @@ stage:
     low: -21000.0 
     high: 33000.0
   ylimit: 
-    low: -8000.0  
+    low: -9000.0  
     high: 11000.0
   zlimit: 
     low: -400
@@ -96,8 +96,37 @@ imagingMode:
     objectivePositionLabel: ~
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
+PPM:
+  ppm_plus:
+    tick: 5
+  ppm_minus:
+    tick: -5
+  brightfield:
+    tick: 90
 
 slideSize:
   x: 40000
   y: 20000
 
+scanners:
+  Ocus40:
+    type: 'WholeSlideScanner'
+    vendor: 'Grundium'
+    macro:
+      pixelSize_um: 80.0  # Default macro pixel size
+      requiresCropping: true
+      slideBounds:
+        xMin: 0
+        xMax: 985
+        yMin: 19
+        yMax: 331
+      description: 'Ocus40 whole slide scanner with slide holder visible in macro image'
+  
+  Generic:
+    type: 'Generic'
+    vendor: 'Unknown'
+    macro:
+      pixelSize_um: 80.0
+      requiresCropping: false
+      slideBounds: null  # No predefined bounds
+      description: 'Generic scanner without specific macro image handling'
