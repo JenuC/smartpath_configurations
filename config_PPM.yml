@@ -97,12 +97,18 @@ imagingMode:
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
 PPM:
+  ppm_zero:
+    tick: 0
+    exposure_ms: 800
   ppm_plus:
     tick: 5
+    exposure_ms: 500
   ppm_minus:
     tick: -5
+    exposure_ms: 500
   brightfield:
     tick: 90
+    exposure_ms: 10
 
 slideSize:
   x: 40000
