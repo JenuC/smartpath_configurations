@@ -123,7 +123,7 @@ scanners:
       requiresCropping: true
       slideBounds:
         xMin: 0
-        xMax: 985
+        xMax: 938
         yMin: 19
         yMax: 331
       description: 'Ocus40 whole slide scanner with slide holder visible in macro image'
@@ -132,7 +132,7 @@ scanners:
     type: 'Generic'
     vendor: 'Unknown'
     macro:
-      pixelSize_um: 80.0
+      pixelSize_um: 88.0
       requiresCropping: false
       slideBounds: null  # No predefined bounds
       description: 'Generic scanner without specific macro image handling'
