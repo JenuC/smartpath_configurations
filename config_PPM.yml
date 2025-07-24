@@ -9,8 +9,8 @@ stage:
     low: -21000.0 
     high: 33000.0
   ylimit: 
-    low: -9000.0  
-    high: 11000.0
+    low: -12000.0  
+    high: 13000.0
   zlimit: 
     low: -400
     high: 100
