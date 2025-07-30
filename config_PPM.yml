@@ -16,6 +16,7 @@ stage:
     high: 100
   vendor:
     Prior
+  ID: LOCI-Stage-002
 
 imagingMode:
   BF_4x:
@@ -96,43 +97,8 @@ imagingMode:
     objectivePositionLabel: ~
     lampIntensity_V: ~
     detector: LOCI-CAMERA-002
-PPM:
-  ppm_zero:
-    tick: 0
-    exposure_ms: 800
-  ppm_plus:
-    tick: 5
-    exposure_ms: 500
-  ppm_minus:
-    tick: -5
-    exposure_ms: 500
-  brightfield:
-    tick: 90
-    exposure_ms: 10
+
 
 slideSize:
   x: 40000
   y: 20000
-
-scanners:
-  Ocus40:
-    type: 'WholeSlideScanner'
-    vendor: 'Grundium'
-    macro:
-      pixelSize_um: 80.0  # Default macro pixel size
-      requiresCropping: true
-      slideBounds:
-        xMin: 0
-        xMax: 938
-        yMin: 19
-        yMax: 331
-      description: 'Ocus40 whole slide scanner with slide holder visible in macro image'
-  
-  Generic:
-    type: 'Generic'
-    vendor: 'Unknown'
-    macro:
-      pixelSize_um: 88.0
-      requiresCropping: false
-      slideBounds: null  # No predefined bounds
-      description: 'Generic scanner without specific macro image handling'

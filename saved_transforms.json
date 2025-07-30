@@ -23,5 +23,30 @@
       "edgeThickness": 3,
       "requireRectangle": true
     }
+  },
+  "Ocus40_PPM2": {
+    "name": "Ocus40_PPM2",
+    "microscope": "PPM",
+    "mountingMethod": "Standard",
+    "transform": {
+      "m00": 89.24008626086956,
+      "m10": 0.0,
+      "m01": 0.0,
+      "m11": 87.3413610212766,
+      "m02": -45930.93786713043,
+      "m12": -12537.370662808511
+    },
+    "createdDate": "Jul 24, 2025, 3:50:44 PM",
+    "notes": "Macro-to-stage transform for 938x312 macro image. Green box detected: true. Validation: FAILED",
+    "greenBoxParams": {
+      "greenThreshold": 0.4,
+      "saturationMin": 0.3,
+      "brightnessMin": 0.3,
+      "brightnessMax": 0.9,
+      "minBoxWidth": 100,
+      "minBoxHeight": 100,
+      "edgeThickness": 3,
+      "requireRectangle": true
+    }
   }
 }

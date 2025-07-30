@@ -1,0 +1,13 @@
+microscope:
+  Ocus40:
+    type: 'WholeSlideScanner'
+    vendor: 'Grundium'
+    macro:
+      pixelSize_um: 80.0  # Default macro pixel size
+      requiresCropping: true
+      slideBounds:
+        xMin: 0
+        xMax: 938
+        yMin: 19
+        yMax: 331
+      description: 'Ocus40 whole slide scanner with slide holder visible in macro image'

@@ -1,5 +1,7 @@
 
-# CAMM: lamp, objectiveSlider, stage, slideSize, imagingMode
+microscope:
+  name: 'CAMM'
+
 lamp:
   - LED-Dev1ao0
   - Voltage
