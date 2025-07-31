@@ -1,7 +1,7 @@
 
 microscope:
   name: 'CAMM'
-
+  type: 'Multimodal'
 lamp:
   - LED-Dev1ao0
   - Voltage

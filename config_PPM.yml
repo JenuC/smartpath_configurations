@@ -1,7 +1,7 @@
 
 microscope:
   name: 'PPM'
-
+  type: 'UprightBrightfield'
 stage:
   z_stage:
     'ZStage'
