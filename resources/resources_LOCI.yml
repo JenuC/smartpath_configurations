@@ -40,7 +40,7 @@ id_detector:
         sensor_pixel_height_um: 4.54
         description: null
 
-id_objective:
+id_objective_lens:
     LOCI_20x_001:
         name: '20x Nikon' 
         magnification: 20.0
