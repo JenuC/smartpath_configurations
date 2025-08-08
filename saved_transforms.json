@@ -2,17 +2,17 @@
   "Ocus40_PPM": {
     "name": "Ocus40_PPM",
     "microscope": "PPM",
-    "mountingMethod": "Standard",
+    "mountingMethod": "Ocus40",
     "transform": {
-      "m00": 89.24008626086956,
+      "m00": 81.0,
       "m10": 0.0,
       "m01": 0.0,
-      "m11": 87.3413610212766,
-      "m02": -45945.93786713043,
-      "m12": -12601.370662808511
+      "m11": 81.0,
+      "m02": -40728.961056,
+      "m12": -11870.852064000002
     },
-    "createdDate": "Jul 23, 2025, 5:41:17 PM",
-    "notes": "Macro-to-stage transform for 938x312 macro image. Green box detected: true. Validation: FAILED",
+    "createdDate": "Aug 5, 2025, 4:38:33 PM",
+    "notes": "Transform from Ocus40 macro to stage. Macro: 938x312, Green box detected, Validation: WARNING",
     "greenBoxParams": {
       "greenThreshold": 0.4,
       "saturationMin": 0.3,
@@ -29,10 +29,10 @@
     "microscope": "PPM",
     "mountingMethod": "Standard",
     "transform": {
-      "m00": 89.24008626086956,
+      "m00": 80.0,
       "m10": 0.0,
       "m01": 0.0,
-      "m11": 87.3413610212766,
+      "m11": 80.0,
       "m02": -45930.93786713043,
       "m12": -12537.370662808511
     },
