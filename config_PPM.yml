@@ -22,12 +22,6 @@ imaging_mode:
     is_lsm: false
     objective_lens: 'LOCI-4x-002'
     pixel_size_um: 1.1389
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
@@ -35,12 +29,6 @@ imaging_mode:
     is_lsm: false
     objective_lens: 'LOCI-10x-001'
     pixel_size_um: 0.4537
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
@@ -48,24 +36,12 @@ imaging_mode:
     is_lsm: false
     objective_lens: 'LOCI-20x-003'
     pixel_size_um: 0.2271
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
   bf_40x:
     is_lsm: false    
     pixel_size_um: 0.1142
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
@@ -74,12 +50,6 @@ imaging_mode:
     is_lsm: false
     objective_lens: 'LOCI-10x-001'
     pixel_size_um: 0.4537
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
@@ -87,12 +57,6 @@ imaging_mode:
     is_lsm: false
     objective_lens: 'LOCI-20x-003'
     pixel_size_um: 0.2271
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
@@ -100,12 +64,6 @@ imaging_mode:
     is_lsm: false
     objective_lens: 'LOCI-40x-001'    
     pixel_size_um: 0.1142
-    pixel_offset:
-      x: 0
-      y: 0
-    stage_offset:
-      z: 0
-      f: 0
     objective_position_label: null
     lamp_intensity_v: null
     detector: 'LOCI-CAMERA-002'
