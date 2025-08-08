@@ -3,7 +3,7 @@ microscope:
   type: 'WholeSlideScanner'
   vendor: 'Grundium'
 macro:
-  pixelSize_um: 80.0  # Default macro pixel size
+  pixelSize_um: 81.0  # Default macro pixel size
   requiresCropping: true
   slideBounds:
     xMin: 0
