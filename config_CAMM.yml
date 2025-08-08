@@ -6,79 +6,79 @@ lamp:
   - LED-Dev1ao0
   - Voltage
 
-objectiveSlider:
+objective_slider:
   - Turret:O:35
   - Label
 
-slideSize:
+slide_size:
   width: 40000
   height: 20000
   # (70000, -20000)
   
 stage:
-  zstage: 'ZStage:Z:32'
-  fstage: 'ZStage:F:32'
-  xlimit:
+  z_stage: 'ZStage:Z:32'
+  f_stage: 'ZStage:F:32'
+  x_limit:
     low: 0
     high: 40000
-  ylimit:
+  y_limit:
     low: 0
     high: 30000
-  zlimit:
+  z_limit:
     low: -10700
     high: 100
-  flimit:
+  f_limit:
     low: -18000
     high: 0
-  vendor: ASI
-  ID: LOCI-Stage-001
+  vendor: 'ASI'
+  id: 'LOCI-Stage-001'
 
-imagingMode:
+imaging_mode:
 
-  BF_4X:
-    name: 4X Brightfield
-    description: LSM Imaging with 20x lens
-    isLSM : false
-    pixelSize_um : 1.105
-    pixelOffset:
+  bf_4x:
+    name: '4X Brightfield'
+    description: 'LSM Imaging with 20x lens'
+    is_lsm: false
+    pixel_size_um: 1.105
+    pixel_offset:
       x: 0
       y: 0
-    z: -9.2,
-    f: -3200,
-    objectivePositionLabel: "Position-2"
-    lampIntensity_V: 4
-    objectiveLens: LOCI-4x-001
-    detector: LOCI-CAMERA-001
+    z: -9.2
+    f: -3200
+    objective_position_label: 'Position-2'
+    lamp_intensity_v: 4
+    objective_lens: 'LOCI-4x-001'
+    detector: 'LOCI-CAMERA-001'
 
 
-  BF_20X:
-    name: 20X Brightfield
-    description: LSM Imaging with 20x lens
-    isLSM : false
-    pixelSize_um : 0.222
-    z: -10502,
-    f: -13350,
-    pixelOffset:
+  bf_20x:
+    name: '20X Brightfield'
+    description: 'LSM Imaging with 20x lens'
+    is_lsm: false
+    pixel_size_um: 0.222
+    z: -10502
+    f: -13350
+    pixel_offset:
       x: -600
       y: 10
-    objectivePositionLabel: "Position-1"
-    lampIntensity_V: 5
-    objectiveLens: LOCI-20x-001
-    detector: LOCI-CAMERA-001
+    objective_position_label: 'Position-1'
+    lamp_intensity_v: 5
+    objective_lens: 'LOCI-20x-001'
+    detector: 'LOCI-CAMERA-001'
     
     
-  MPM_20X:
-    name: 20X LSM MP
-    description: LSM Imaging with 20x lens
-    isLSM: true    
-    pixelSize_um : ~
-    pixelOffset:
+  mpm_20x:
+    name: '20X LSM MP'
+    description: 'LSM Imaging with 20x lens'
+    is_lsm: true    
+    pixel_size_um: null
+    pixel_offset:
       x: -580
       y: -280
     z: -10502
     f: -13350 
-    objectivePositionLabel: "Position-1"
-    lampIntensity_V: 5
-    objectiveLens: LOCI-20x-001
-    detector: LOCI-PMT-001
+    objective_position_label: 'Position-1'
+    lamp_intensity_v: 5
+    objective_lens: 'LOCI-20x-001'
+    detector: 'LOCI-PMT-001'
     

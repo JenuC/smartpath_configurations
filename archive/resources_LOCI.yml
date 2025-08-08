@@ -2,30 +2,23 @@
 
 
 
-Stage:
-    vendor:
-        "ASI"
+stage:
+    vendor: 'ASI'
 
+detector:
+    width: 0.0
+    height: 0.0
 
+imaging_mode:
+    name: 'Multiphoton'
+    pixel_size: 1.0
 
-Detector:
-    width:
-        0.0
-    height:
-        0.0
-
-ImagingMode:
-    name:
-        "Multiphoton"
-    pixelsize:
-        1.0
-
-ObjectiveLens:
+objective_lens:
     # See https://www.microscope.healthcare.nikon.com/products/optics/selector
-    name: str
+    name: 'str'
     magnification: 1.0
-    NA: 1.0
-    WD: 170.0 #um
-    description: nil
-    manufacturer_id: nil
+    na: 1.0
+    wd: 170.0 #um
+    description: null
+    manufacturer_id: null
 

@@ -2,131 +2,130 @@
 microscope:
   name: 'PPM'
   type: 'UprightBrightfield'
+
 stage:
-  z_stage:
-    'ZStage'
-  xlimit: 
+  z_stage: 'ZStage'
+  x_limit: 
     low: -21000.0 
     high: 33000.0
-  ylimit: 
+  y_limit: 
     low: -12000.0  
     high: 13000.0
-  zlimit: 
+  z_limit: 
     low: -400
     high: 100
-  vendor:
-    Prior
-  ID: LOCI-Stage-002
+  vendor: 'Prior'
+  id: 'LOCI-Stage-002'
 
-imagingMode:
-  BF_4x:
-    isLSM : false
-    objectiveLens: LOCI-4x-002
-    pixelSize_um : 1.1389
-    pixelOffset:
+imaging_mode:
+  bf_4x:
+    is_lsm: false
+    objective_lens: 'LOCI-4x-002'
+    pixel_size_um: 1.1389
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
-  BF_10x:
-    isLSM : false
-    objectiveLens: LOCI-10x-001
-    pixelSize_um : 0.4537
-    pixelOffset:
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
+  bf_10x:
+    is_lsm: false
+    objective_lens: 'LOCI-10x-001'
+    pixel_size_um: 0.4537
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
-  BF_20x:
-    isLSM : false
-    objectiveLens: LOCI-20x-003
-    pixelSize_um : 0.2271
-    pixelOffset:
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
+  bf_20x:
+    is_lsm: false
+    objective_lens: 'LOCI-20x-003'
+    pixel_size_um: 0.2271
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
-  BF_40x:
-    isLSM : false    
-    pixelSize_um : 0.1142
-    pixelOffset:
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
+  bf_40x:
+    is_lsm: false    
+    pixel_size_um: 0.1142
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
-    objectiveLens: LOCI-40x-001 
-  PPM_10x:
-    isLSM : false
-    objectiveLens: LOCI-10x-001
-    pixelSize_um : 0.4537
-    pixelOffset:
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
+    objective_lens: 'LOCI-40x-001' 
+  ppm_10x:
+    is_lsm: false
+    objective_lens: 'LOCI-10x-001'
+    pixel_size_um: 0.4537
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
-  PPM_20x:
-    isLSM : false
-    objectiveLens: LOCI-20x-003
-    pixelSize_um : 0.2271
-    pixelOffset:
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
+  ppm_20x:
+    is_lsm: false
+    objective_lens: 'LOCI-20x-003'
+    pixel_size_um: 0.2271
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
-  PPM_40x:
-    isLSM : false
-    objectiveLens: LOCI-40x-001    
-    pixelSize_um : 0.1142
-    pixelOffset:
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
+  ppm_40x:
+    is_lsm: false
+    objective_lens: 'LOCI-40x-001'    
+    pixel_size_um: 0.1142
+    pixel_offset:
       x: 0
       y: 0
-    stageoffset:
+    stage_offset:
       z: 0
       f: 0
-    objectivePositionLabel: ~
-    lampIntensity_V: ~
-    detector: LOCI-CAMERA-002
+    objective_position_label: null
+    lamp_intensity_v: null
+    detector: 'LOCI-CAMERA-002'
 
-whitebalance:    
-  PPM:
-    crossed  : 1.000, 1.000, 1.116   # +0
-    uncrossed: 1.000, 1.000, 1.000 # +90
-    positive : 1.000, 1.000, 1.116  # +5
-    negative : 1.000, 1.000, 1.000 # -5
+white_balance:    
+  ppm:
+    crossed: [1.000, 1.000, 1.116]   # +0
+    uncrossed: [1.000, 1.000, 1.000] # +90
+    positive: [1.000, 1.000, 1.116]  # +5
+    negative: [1.000, 1.000, 1.000] # -5
     
-slideSize:
-    x: 40000
-    y: 20000
+slide_size:
+  x: 40000
+  y: 20000
   
 autofocus:
-    n_steps         : 5
-    search_range    : 45
-    interp_strength : 100
-    interp_kind     : quadratic
-    score_metric    : sobel
-    pop_a_plot      : false
-    move_stage_to_estimate: true
+  n_steps: 5
+  search_range: 45
+  interp_strength: 100
+  interp_kind: 'quadratic'
+  score_metric: 'sobel'
+  pop_a_plot: false
+  move_stage_to_estimate: true
