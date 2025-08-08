@@ -31,7 +31,7 @@ stage:
     low: -18000
     high: 0
   vendor: 'ASI'
-  id: 'LOCI-Stage-001'
+  id: 'LOCI_Stage_001'
 
 imaging_mode:
 
@@ -47,8 +47,8 @@ imaging_mode:
     f: -3200
     objective_position_label: 'Position-2'
     lamp_intensity_v: 4
-    objective_lens: 'LOCI-4x-001'
-    detector: 'LOCI-CAMERA-001'
+    objective_lens: 'LOCI_4x_001'
+    detector: 'LOCI_CAMERA_001'
 
 
   bf_20x:
@@ -63,8 +63,8 @@ imaging_mode:
       y: 10
     objective_position_label: 'Position-1'
     lamp_intensity_v: 5
-    objective_lens: 'LOCI-20x-001'
-    detector: 'LOCI-CAMERA-001'
+    objective_lens: 'LOCI_20x_001'
+    detector: 'LOCI_CAMERA_001'
     
     
   mpm_20x:
@@ -79,8 +79,8 @@ imaging_mode:
     f: -13350 
     objective_position_label: 'Position-1'
     lamp_intensity_v: 5
-    objective_lens: 'LOCI-20x-001'
-    detector: 'LOCI-PMT-001'
+    objective_lens: 'LOCI_20x_001'
+    detector: 'LOCI_PMT_001'
      
 white_balance:    
   bf:
