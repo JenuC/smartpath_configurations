@@ -81,4 +81,9 @@ imaging_mode:
     lamp_intensity_v: 5
     objective_lens: 'LOCI-20x-001'
     detector: 'LOCI-PMT-001'
-    
+     
+white_balance:    
+  bf:
+    binLi_4x_Jul2021: [1.079, 1.0, 10.056]
+    binLi_20x_May2022: [1.000, 1.011, 1.245]
+    jenu_20x_Mar2024: [1.089, 1.000, 1.241]
