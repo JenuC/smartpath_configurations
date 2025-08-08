@@ -2,6 +2,7 @@
 microscope:
   name: 'PPM'
   type: 'UprightBrightfield'
+  camera: 'LOCI_CAMERA_002'
 
 stage:
   z_stage: 'ZStage'
@@ -15,58 +16,30 @@ stage:
     low: -400
     high: 100
   vendor: 'Prior'
-  id: 'LOCI-Stage-002'
+  id: 'LOCI_Stage_002'
 
 imaging_mode:
   bf_4x:
-    is_lsm: false
-    objective_lens: 'LOCI-4x-002'
+    objective_lens: 'LOCI_4x_002'
     pixel_size_um: 1.1389
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
   bf_10x:
-    is_lsm: false
-    objective_lens: 'LOCI-10x-001'
+    objective_lens: 'LOCI_10x_001'
     pixel_size_um: 0.4537
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
   bf_20x:
-    is_lsm: false
-    objective_lens: 'LOCI-20x-003'
+    objective_lens: 'LOCI_20x_003'
     pixel_size_um: 0.2271
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
   bf_40x:
-    is_lsm: false    
     pixel_size_um: 0.1142
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
-    objective_lens: 'LOCI-40x-001' 
+    objective_lens: 'LOCI_40x_001' 
   ppm_10x:
-    is_lsm: false
-    objective_lens: 'LOCI-10x-001'
+    objective_lens: 'LOCI_10x_001'
     pixel_size_um: 0.4537
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
   ppm_20x:
-    is_lsm: false
-    objective_lens: 'LOCI-20x-003'
+    objective_lens: 'LOCI_20x_003'
     pixel_size_um: 0.2271
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
   ppm_40x:
-    is_lsm: false
-    objective_lens: 'LOCI-40x-001'    
+    objective_lens: 'LOCI_40x_001'    
     pixel_size_um: 0.1142
-    objective_position_label: null
-    lamp_intensity_v: null
-    detector: 'LOCI-CAMERA-002'
 
 white_balance:    
   ppm:
