@@ -5,6 +5,7 @@ microscope:
   camera: 'LOCI_CAMERA_002'
 
 stage:
+  r_stage: 'KBD101_Thor_Rotation' 
   z_stage: 'ZStage'
   x_limit: 
     low: -21000.0 
@@ -15,8 +16,7 @@ stage:
   z_limit: 
     low: -400
     high: 100
-  vendor: 'Prior'
-  id: 'LOCI_Stage_002'
+  id: 'LOCI_Stage_002' # Prior stage
 
 imaging_mode:
   bf_4x:
@@ -47,7 +47,9 @@ white_balance:
     uncrossed: [1.000, 1.000, 1.000] # +90
     positive: [1.000, 1.000, 1.116]  # +5
     negative: [1.000, 1.000, 1.000] # -5
-    
+  default:
+    default: [1.000, 1.000, 1.000]
+
 slide_size:
   x: 40000
   y: 20000
@@ -60,3 +62,4 @@ autofocus:
   score_metric: 'sobel'
   pop_a_plot: false
   move_stage_to_estimate: true
+
