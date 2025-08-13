@@ -43,10 +43,10 @@ imaging_mode:
 
 white_balance:    
   ppm:
-    crossed: [1.000, 1.000, 1.116]   # +0
-    uncrossed: [1.000, 1.000, 1.000] # +90
-    positive: [1.000, 1.000, 1.116]  # +5
-    negative: [1.000, 1.000, 1.000] # -5
+    crossed: [1.000, 1.1338, 1.2957]   # +0
+    uncrossed: [1.2462, 1.000, 2.3817] # +90
+    positive: [1.2079, 1.000, 1.7153]  # +5
+    negative: [1.000, 1.102, 1.9990] # -5
   default:
     default: [1.000, 1.000, 1.000]
 
@@ -58,8 +58,3 @@ autofocus:
   n_steps: 5
   search_range: 45
   interp_strength: 100
-  interp_kind: 'quadratic'
-  score_metric: 'sobel'
-  pop_a_plot: false
-  move_stage_to_estimate: true
-
