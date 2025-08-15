@@ -14,7 +14,7 @@ stage:
     low: -12000.0  
     high: 13000.0
   z_limit: 
-    low: -400
+    low: -800
     high: 100
   id: 'LOCI_Stage_002' # Prior stage
 
@@ -43,10 +43,10 @@ imaging_mode:
 
 white_balance:    
   ppm:
-    crossed: [1.000, 1.1338, 1.2957]   # +0
-    uncrossed: [1.2462, 1.000, 2.3817] # +90
-    positive: [1.2079, 1.000, 1.7153]  # +5
-    negative: [1.000, 1.102, 1.9990] # -5
+    crossed: [1.33363137 1.17596971 1.0]   # +0
+    uncrossed: [1.97220307 2.38955037 1.0  ] # +90
+    positive: [1.38673833 1.6424885  1.0]  # +5
+    negative: [1.81489925 1.70723008 1.0] # -5
   default:
     default: [1.000, 1.000, 1.000]
 
@@ -55,6 +55,12 @@ slide_size:
   y: 20000
   
 autofocus:
-  n_steps: 5
+  n_steps: 9 # minimum 3
   search_range: 45
-  interp_strength: 100
+  n_tiles: 5
+  #interp_strength: 100
+
+background_correction:
+  enabled: true
+  method: "subtract"
+  background_folder: "D:/2025QPSC/data/background_tiles"
