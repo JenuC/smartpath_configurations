@@ -14,7 +14,7 @@ stage:
     low: -12000.0  
     high: 13000.0
   z_limit: 
-    low: -800
+    low: -1800 # 40x will hit at 850-900
     high: 100
   id: 'LOCI_Stage_002' # Prior stage
 
@@ -56,11 +56,11 @@ slide_size:
   
 autofocus:
   n_steps: 9 # minimum 3
-  search_range: 45
+  search_range: 20
   n_tiles: 5
   #interp_strength: 100
 
 background_correction:
   enabled: true
-  method: "subtract"
+  method: "divide"
   background_folder: "D:/2025QPSC/data/background_tiles"
