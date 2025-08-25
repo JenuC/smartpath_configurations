@@ -34,10 +34,10 @@ id_detector:
     LOCI_CAMERA_003:
         name: 'AP-3200T-USB'
         manufacturer: 'JAI'
-        width_px: 1000
-        height_px: 1000
-        sensor_pixel_width_um: 4.54
-        sensor_pixel_height_um: 4.54
+        width_px: 2064
+        height_px: 1544
+        sensor_pixel_width_um: null
+        sensor_pixel_height_um: null
         description: null
 
 id_objective_lens:
