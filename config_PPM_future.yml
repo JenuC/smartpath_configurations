@@ -12,19 +12,9 @@ calibration:
     default: [1.0, 1.0, 1.0]
 
 # Autofocus parameters per objective
-autofocus:
-  10x: &af_10x
-    n_steps: 9
-    search_range: 50
-    n_tiles: 5
-  20x: &af_20x
-    n_steps: 11
-    search_range: 25
-    n_tiles: 5
-  40x: &af_40x
-    n_steps: 15
-    search_range: 10
-    n_tiles: 7
+autofocus: {'10x': {'id':&af_10x,     n_steps: 9,     search_range: 50,     n_tiles: 5},
+  - {lens20x: &af_20x,     n_steps: 11,    search_range: 25,    n_tiles: 5}
+  - {lens40x: &af_40x,     n_steps: 15,    search_range: 10,     n_tiles: 7}
 
 # Exposure settings
 exposures:
@@ -35,9 +25,9 @@ exposures:
     - {name: 'uncrossed', tick: 90, exposure_ms: 10}
   
   brightfield:
-    10x: &bf_exp_10x 50
-    20x: &bf_exp_20x 80
-    40x: &bf_exp_40x 120
+    lens10x: &bf_exp_10x 50
+    lens20x: &bf_exp_20x 80
+    lens40x: &bf_exp_40x 120
 
 # Background correction paths
 backgrounds:
