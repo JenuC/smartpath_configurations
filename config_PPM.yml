@@ -12,50 +12,44 @@
 camera_settings:
   LOCI_CAMERA_002:  # MicroPublisher 6
     ppm_exposures: &cam002_ppm_exposures
-      negative: 500
-      crossed: 800
-      positive: 500
-      uncrossed: 10
+      negative_ms: 500
+      crossed_ms: 800
+      positive_ms: 500
+      uncrossed_ms: 10
     ppm_gains: &cam002_ppm_gains  # Constant across all angles
       r: 1.2
       g: 1.0
       b: 1.1
-    bf_exposures: &cam002_bf_exposures
-      10x: 50
-      20x: 80
-      40x: 120
+
 
   LOCI_CAMERA_003:  # JAI prism camera (supports both single and RGB exposure modes)
     ppm_exposures: &cam003_ppm_exposures
       negative:
-        all: 500  # Single exposure for all channels (simplified mode)
-        r: 450    # Individual RGB exposures (advanced mode)
-        g: 500    # ConfigManager chooses which mode to use
-        b: 550
+        all_ms: 500  # Single exposure for all channels (simplified mode)
+        r_ms: 450    # Individual RGB exposures (advanced mode)
+        g_ms: 500    # ConfigManager chooses which mode to use
+        b_ms: 550
       crossed:
-        all: 800  
-        r: 750    
-        g: 800
-        b: 850
+        all_ms: 800  
+        r_ms: 750    
+        g_ms: 800
+        b_ms: 850
       positive:
-        all: 500  
-        r: 450    
-        g: 500
-        b: 550
+        all_ms: 500  
+        r_ms: 450    
+        g_ms: 500
+        b_ms: 550
       uncrossed:
-        all: 10   
-        r: 8      
-        g: 10
-        b: 12
+        all_ms: 10   
+        r_ms: 8      
+        g_ms: 10
+        b_ms: 12
     ppm_gains: &cam003_ppm_gains  # Always applied per-channel for white balance
       negative: {r: 1.0, g: 1.0, b: 1.0}
       crossed: {r: 1.1, g: 1.0, b: 1.05}
       positive: {r: 1.0, g: 1.0, b: 1.0}
       uncrossed: {r: 1.2, g: 1.0, b: 1.1}
-    bf_exposures: &cam003_bf_exposures
-      10x: 50
-      20x: 80
-      40x: 120
+
 
 # ========== MICROSCOPE CONFIGURATION ==========
 
@@ -76,7 +70,7 @@ modalities:
     rotation_stage:
       device: 'KBD101_Thor_Rotation'
       type: 'polarizer'
-    rotation_angles:
+    rotation_angles:  #ticks are double angles due to how the PPM was made, so 90 ticks is a 180 degree rotation
       - name: 'negative'
         tick: -5
       - name: 'crossed'
@@ -206,7 +200,7 @@ acquisition_profiles:
     objective: 'LOCI_10x_001'
     detector: 'LOCI_CAMERA_003'
     acquisition_settings:
-      exposure_ms: 50  # From cam003_bf_exposures['10x']
+      exposure_ms: 50  
       gain: 1.0
       
   bf_10x_mp6:
@@ -214,7 +208,7 @@ acquisition_profiles:
     objective: 'LOCI_10x_001'
     detector: 'LOCI_CAMERA_002'
     acquisition_settings:
-      exposure_ms: 50  # From cam002_bf_exposures['10x']
+      exposure_ms: 50  
       gains_rgb: *cam002_ppm_gains  # Same RGB gains as PPM mode
 
   # ===== BRIGHTFIELD MODALITY - 20x OBJECTIVE =====
@@ -223,7 +217,7 @@ acquisition_profiles:
     objective: 'LOCI_20x_003'
     detector: 'LOCI_CAMERA_003'
     acquisition_settings:
-      exposure_ms: 80  # From cam003_bf_exposures['20x']
+      exposure_ms: 80 
       gain: 1.0
       
   bf_20x_mp6:  # NEW - Added for completeness
@@ -231,7 +225,7 @@ acquisition_profiles:
     objective: 'LOCI_20x_003'
     detector: 'LOCI_CAMERA_002'
     acquisition_settings:
-      exposure_ms: 80  # From cam002_bf_exposures['20x']
+      exposure_ms: 80  
       gains_rgb: *cam002_ppm_gains
 
   # ===== BRIGHTFIELD MODALITY - 40x OBJECTIVE =====
@@ -240,7 +234,7 @@ acquisition_profiles:
     objective: 'LOCI_40x_001'
     detector: 'LOCI_CAMERA_003'
     acquisition_settings:
-      exposure_ms: 120  # From cam003_bf_exposures['40x']
+      exposure_ms: 120  
       gain: 1.0
       
   bf_40x_mp6:  # NEW - Added for completeness
@@ -248,7 +242,7 @@ acquisition_profiles:
     objective: 'LOCI_40x_001'
     detector: 'LOCI_CAMERA_002'
     acquisition_settings:
-      exposure_ms: 120  # From cam002_bf_exposures['40x']
+      exposure_ms: 120 
       gains_rgb: *cam002_ppm_gains
 
 # ========== STAGE CONFIGURATION ==========
