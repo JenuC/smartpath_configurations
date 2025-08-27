@@ -3,7 +3,34 @@ id_stage:
         name: 'ASI XYZ STAGE'
         vendor: 'ASI'
         serial: 'XYZ'
-
+        type: 'xyz_focus'
+        # Device mappings for MicroManager
+        devices:
+            x: null  # Not used for this stage
+            y: null  # Not used for this stage
+            z: 'ZStage:Z:32'
+            f: 'ZStage:F:32'  # Separate focus axis
+            
+    LOCI_STAGE_002:
+        name: 'Prior XYZ Stage'
+        vendor: 'Prior'
+        serial: 'ABC123'
+        type: 'xyz'
+        # Device names as they appear in MicroManager
+        devices:
+            x: 'XStage'
+            y: 'YStage'
+            z: 'ZStage'
+            f: null  # No separate focus axis
+    LOCI_ROTATION_001:
+        name: 'Thorlabs Rotation Stage'
+        vendor: 'Thorlabs'
+        model: 'KBD101'
+        serial: '??'
+        type: 'rotational motor'
+        device: 'KBD101_Thor_Rotation'
+        units: 'ticks'  # or 'degrees'
+        resolution: 0.001  # degrees per tick
 id_detector:
     LOCI_CAMERA_001:
         name: 'QCAM'

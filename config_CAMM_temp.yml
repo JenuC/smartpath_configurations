@@ -1,0 +1,422 @@
+# =============== config_CAMM.yml - CORRECTED VERSION ===============
+
+# ========== CAMM MICROSCOPE CONFIGURATION ==========
+# References hardware from resources_LOCI.yml
+
+# ========== REUSABLE DEFINITIONS ==========
+
+# Autofocus parameters
+autofocus:
+  af_4x: &af_4x
+    n_steps: 7
+    search_range_um: 100
+    n_tiles: 3
+  af_20x: &af_20x
+    n_steps: 11
+    search_range_um: 25
+    n_tiles: 5
+
+# Stage positions for objectives
+stage_positions:
+  pos_4x: &pos_4x
+    z_um: -9200
+    f_um: -3200
+  pos_20x: &pos_20x
+    z_um: -10502
+    f_um: -13350
+
+# ========== MICROSCOPE CONFIGURATION ==========
+
+microscope:
+  name: 'CAMM'
+  type: 'Multimodal'
+  detector_in_use: null
+  objective_in_use: null
+  modality: null
+
+# ========== MODALITY-SPECIFIC SETTINGS ==========
+# Only inherent properties of the imaging modality
+
+modalities:
+  brightfield:
+    type: 'brightfield'
+    lamp:
+      device: 'LED-Dev1ao0'
+      control_type: 'voltage'
+    background_correction:
+      enabled: true
+      method: 'divide'
+      base_folder: "D:/2025QPSC/data/background_tiles"
+      # Path: {base_folder}/{microscope}/brightfield/{magnification}x/{detector}/background.tif
+      
+  shg:  # Second Harmonic Generation
+    type: 'multiphoton'
+    laser:
+      device: 'Chameleon'
+      wavelength_nm: 800
+      wavelength_range_nm: [690, 1040]
+    # Variable magnification through scanning zoom
+    magnification_control:
+      type: 'zoom'
+      range: [0.5, 10.0]  # Available zoom range
+    background_correction:
+      enabled: false  # No background correction for SHG
+
+# ========== DETECTOR CAPABILITIES ==========
+# Hardware capabilities only
+
+detectors:
+  LOCI_CAMERA_001:
+    compatible_modalities: ['brightfield']
+    
+  LOCI_PMT_001:
+    compatible_modalities: ['shg']
+
+# ========== OBJECTIVE-SPECIFIC SETTINGS ==========
+# Only lens-specific properties
+
+objectives:
+  LOCI_4x_001:
+    autofocus: *af_4x
+    pixel_size_xy_um:
+      LOCI_CAMERA_001: 1.105  # Fixed for camera
+    # No scan parameters - not used with SHG
+      
+  LOCI_20x_001:
+    autofocus: *af_20x
+    pixel_size_xy_um:
+      LOCI_CAMERA_001: 0.222  # Fixed for camera
+    # For scanning modalities - defines FOV at zoom=1.0
+    scan_parameters:
+      base_fov_um: 500  # Field of view at zoom = 1.0
+
+# ========== ACQUISITION PROFILES ==========
+# All combination-specific settings (modality + objective + detector)
+
+acquisition_profiles:
+  bf_4x:
+    modality: 'brightfield'
+    objective: 'LOCI_4x_001'
+    detector: 'LOCI_CAMERA_001'
+    stage_positions: *pos_4x
+    objective_turret_position: 'Position-2'
+    acquisition_settings:
+      exposure_ms: 40
+      lamp_voltage: 4.0
+      gain: 1.0
+      binning: 1
+      
+  bf_20x:
+    modality: 'brightfield'
+    objective: 'LOCI_20x_001'
+    detector: 'LOCI_CAMERA_001'
+    stage_positions: *pos_20x
+    objective_turret_position: 'Position-1'
+    acquisition_settings:
+      exposure_ms: 80
+      lamp_voltage: 5.0
+      gain: 1.2
+      binning: 1
+      
+  shg_20x:
+    modality: 'shg'
+    objective: 'LOCI_20x_001'
+    detector: 'LOCI_PMT_001'
+    stage_positions: *pos_20x
+    objective_turret_position: 'Position-1'
+    acquisition_settings:
+      pmt_gain: 0.75
+      pixel_dwell_time_us: 4.0
+      averaging: 2
+      scan_mode: 'unidirectional'
+      laser_power_percent: 30
+      zoom_factor: 1.0  # Affects pixel size calculation
+      scan_resolution_px: [512, 512]
+      # Actual FOV = base_fov_um / zoom_factor = 500 / 1.0 = 500um
+      # Pixel size = FOV / resolution = 500 / 512 = 0.977um/px
+      
+  shg_20x_highres:  # High resolution variant
+    modality: 'shg'
+    objective: 'LOCI_20x_001'
+    detector: 'LOCI_PMT_001'
+    stage_positions: *pos_20x
+    objective_turret_position: 'Position-1'
+    acquisition_settings:
+      pmt_gain: 0.75
+      pixel_dwell_time_us: 8.0  # Longer dwell for better SNR
+      averaging: 4
+      scan_mode: 'unidirectional'
+      laser_power_percent: 30
+      zoom_factor: 2.0  # 2x zoom = smaller FOV = better resolution
+      scan_resolution_px: [1024, 1024]
+      # Actual FOV = 500 / 2.0 = 250um
+      # Pixel size = 250 / 1024 = 0.244um/px
+
+# ========== STAGE CONFIGURATION ==========
+# Only references XYZ stage for sample positioning
+
+stage:
+  stage_id: 'LOCI_STAGE_001'  # References ASI XYZ stage in resources
+  # Note: Device mappings (z_device, f_device) are defined in resources_LOCI.yml
+  limits:
+    x_um:
+      low: 0
+      high: 40000
+    y_um:
+      low: 0
+      high: 30000
+    z_um:
+      low: -10700
+      high: 100
+    f_um:
+      low: -18000
+      high: 0
+
+# ========== GENERAL SETTINGS ==========
+
+slide_size_um:
+  x: 40000
+  y: 20000
+  
+objective_slider:
+  device: 'Turret:O:35'
+  label_device: 'Label'
+
+
+# =============== config_PPM.yml - CORRECTED VERSION ===============
+
+# ========== PPM MICROSCOPE CONFIGURATION ==========
+# References hardware from resources_LOCI.yml
+
+# ========== REUSABLE DEFINITIONS ==========
+
+# Autofocus parameters
+autofocus:
+  af_10x: &af_10x
+    n_steps: 9
+    search_range_um: 50
+    n_tiles: 5
+  af_20x: &af_20x
+    n_steps: 11
+    search_range_um: 25
+    n_tiles: 5
+  af_40x: &af_40x
+    n_steps: 15
+    search_range_um: 10
+    n_tiles: 7
+
+# Camera-specific exposure and gain settings
+camera_settings:
+  LOCI_CAMERA_002:  # MicroPublisher 6
+    ppm_exposures: &cam002_ppm_exposures
+      negative: 500
+      crossed: 800
+      positive: 500
+      uncrossed: 10
+    ppm_gains: &cam002_ppm_gains  # Constant across all angles
+      r: 1.2
+      g: 1.0
+      b: 1.1
+    bf_exposures: &cam002_bf_exposures
+      10x: 50
+      20x: 80
+      40x: 120
+
+  LOCI_CAMERA_003:  # JAI prism camera
+    ppm_exposures: &cam003_ppm_exposures
+      negative:
+        r: 450
+        g: 500
+        b: 550
+      crossed:
+        r: 750
+        g: 800
+        b: 850
+      positive:
+        r: 450
+        g: 500
+        b: 550
+      uncrossed:
+        r: 8
+        g: 10
+        b: 12
+    ppm_gains: &cam003_ppm_gains  # Per angle
+      negative: {r: 1.0, g: 1.0, b: 1.0}
+      crossed: {r: 1.1, g: 1.0, b: 1.05}
+      positive: {r: 1.0, g: 1.0, b: 1.0}
+      uncrossed: {r: 1.2, g: 1.0, b: 1.1}
+    bf_exposures: &cam003_bf_exposures
+      10x: 50
+      20x: 80
+      40x: 120
+
+# ========== MICROSCOPE CONFIGURATION ==========
+
+microscope:
+  name: 'PPM'
+  type: 'UprightBrightfield'
+  detector_in_use: null
+  objective_in_use: null
+  modality: null
+
+# ========== MODALITY-SPECIFIC SETTINGS ==========
+# Only inherent properties of the imaging modality
+
+modalities:
+  ppm:
+    type: 'polarized'
+    # Rotation stage is separate hardware, not part of XYZ stage
+    rotation_stage:
+      device: 'KBD101_Thor_Rotation'
+      type: 'polarizer'
+    rotation_angles:
+      - name: 'negative'
+        tick: -5
+      - name: 'crossed'
+        tick: 0
+      - name: 'positive'
+        tick: 5
+      - name: 'uncrossed'
+        tick: 90
+    background_correction:
+      enabled: true
+      method: 'divide'
+      base_folder: "D:/2025QPSC/data/background_tiles"
+      # Path: {base_folder}/{microscope}/ppm/{magnification}x/{detector}/{angle_name}_background.tif
+        
+  brightfield:
+    type: 'brightfield'
+    background_correction:
+      enabled: true
+      method: 'divide'
+      base_folder: "D:/2025QPSC/data/background_tiles"
+      # Path: {base_folder}/{microscope}/brightfield/{magnification}x/{detector}/background.tif
+
+# ========== DETECTOR CAPABILITIES ==========
+# Hardware capabilities only
+
+detectors:
+  LOCI_CAMERA_002:  # MicroPublisher 6
+    compatible_modalities: ['ppm', 'brightfield']
+    channel_control: 'gain_only'  # Can adjust R,G,B gains but single exposure
+    
+  LOCI_CAMERA_003:  # JAI prism camera  
+    compatible_modalities: ['ppm', 'brightfield']
+    channel_control: 'full_rgb'  # Can adjust R,G,B exposures and gains independently
+
+# ========== OBJECTIVE-SPECIFIC SETTINGS ==========
+# Only lens-specific properties
+
+objectives:
+  LOCI_10x_001:
+    autofocus: *af_10x
+    pixel_size_xy_um:
+      LOCI_CAMERA_002: 0.4537
+      LOCI_CAMERA_003: 0.6866
+      
+  LOCI_20x_003:
+    autofocus: *af_20x
+    pixel_size_xy_um:
+      LOCI_CAMERA_002: 0.2271
+      LOCI_CAMERA_003: 0.3433
+      
+  LOCI_40x_001:
+    autofocus: *af_40x
+    pixel_size_xy_um:
+      LOCI_CAMERA_002: 0.1142
+      LOCI_CAMERA_003: 0.1709
+
+# ========== ACQUISITION PROFILES ==========
+# All combination-specific settings (modality + objective + detector)
+# Note: Consistent naming - all specify camera when multiple options exist
+
+acquisition_profiles:
+  # PPM profiles with JAI camera (full RGB control)
+  ppm_10x_jai:
+    modality: 'ppm'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposures_ms: *cam003_ppm_exposures
+      gains_rgb: *cam003_ppm_gains
+      
+  # PPM profiles with MicroPublisher (gain-only RGB control)
+  ppm_10x_mp6:
+    modality: 'ppm'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposures_ms: *cam002_ppm_exposures
+      gains_rgb: *cam002_ppm_gains  # Constant across all angles
+      
+  ppm_20x_jai:  # Renamed for consistency
+    modality: 'ppm'
+    objective: 'LOCI_20x_003'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposures_ms: *cam003_ppm_exposures
+      gains_rgb: *cam003_ppm_gains
+      
+  ppm_40x_jai:  # Renamed for consistency
+    modality: 'ppm'
+    objective: 'LOCI_40x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposures_ms: *cam003_ppm_exposures
+      gains_rgb: *cam003_ppm_gains
+      
+  # Brightfield profiles
+  bf_10x_jai:  # Renamed for consistency
+    modality: 'brightfield'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposure_ms: 50  # From cam003_bf_exposures['10x']
+      gain: 1.0
+      
+  bf_10x_mp6:
+    modality: 'brightfield'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposure_ms: 50  # From cam002_bf_exposures['10x']
+      gains_rgb: *cam002_ppm_gains  # Same RGB gains as PPM mode
+      
+  bf_20x_jai:  # Renamed for consistency
+    modality: 'brightfield'
+    objective: 'LOCI_20x_003'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposure_ms: 80  # From cam003_bf_exposures['20x']
+      gain: 1.0
+      
+  bf_40x_jai:  # Renamed for consistency
+    modality: 'brightfield'
+    objective: 'LOCI_40x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposure_ms: 120  # From cam003_bf_exposures['40x']
+      gain: 1.0
+
+# ========== STAGE CONFIGURATION ==========
+# Only references XYZ stage for sample positioning
+
+stage:
+  stage_id: 'LOCI_STAGE_002'  # References Prior XYZ stage in resources
+  # Note: rotation stage is referenced in modality, not here
+  limits:
+    x_um:
+      low: -17000
+      high: 33000
+    y_um:
+      low: -12000
+      high: 13000
+    z_um:
+      low: -1800
+      high: 100
+
+# ========== GENERAL SETTINGS ==========
+
+slide_size_um:
+  x: 40000
+  y: 20000
