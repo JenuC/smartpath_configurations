@@ -141,26 +141,6 @@ objectives:
 # ALL combinations of modality × objective × detector
 # Naming: {modality}_{magnification}x_{camera_short_name}
 
-
-acq_profiles_new:
-  defaults:
-    - objective: 'LOCI_10x_001'
-      settings:
-        autofocus:
-          n_steps: 9
-          # ...
-    - objective: 'LOCI_20x_003'
-      settings:
-        autofocus:
-          n_steps: 11
-          # ...
-  profiles:
-    - modality: 'ppm'
-      objective: 'LOCI_10x_001'
-      detector: 'LOCI_CAMERA_002'
-      settings: 
-        
-
 acquisition_profiles:
   # ===== PPM MODALITY - 10x OBJECTIVE =====
   ppm_10x_jai:
