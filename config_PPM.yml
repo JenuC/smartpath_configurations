@@ -1,65 +1,156 @@
+# ========== FREQUENTLY ADJUSTED SETTINGS ==========
+
+# White balance calibration
+calibration:
+  ppm_white_balance: &ppm_wb
+    crossed: [1.33363137, 1.17596971, 1.0]
+    uncrossed: [1.97220307, 2.38955037, 1.0]
+    positive: [1.38673833, 1.6424885, 1.0]
+    negative: [1.81489925, 1.70723008, 1.0]
+  
+  bf_white_balance: &bf_wb
+    default: [1.0, 1.0, 1.0]
+
+# Autofocus parameters per objective
+autofocus:
+  lens10x: &af_10x
+    n_steps: 9
+    search_range: 50
+    n_tiles: 5
+  lens20x: &af_20x
+    n_steps: 11
+    search_range: 25
+    n_tiles: 5
+  lens40x: &af_40x
+    n_steps: 15
+    search_range: 10
+    n_tiles: 7
+
+# Exposure settings
+exposures:
+  ppm_angles: &ppm_angles
+    - name: 'negative'
+      tick: -5
+      exposure_ms: 500
+    - name: 'crossed'
+      tick: 0
+      exposure_ms: 800
+    - name: 'positive'
+      tick: 5
+      exposure_ms: 500
+    - name: 'uncrossed'
+      tick: 90
+      exposure_ms: 10
+  
+  brightfield:
+    lens10x: &bf_exp_10x 50
+    lens20x: &bf_exp_20x 80
+    lens40x: &bf_exp_40x 120
+
+# Background correction paths
+backgrounds:
+  base_folder: &bg_base "D:/2025QPSC/data/background_tiles"
+
+# ========== MODALITY DEFINITIONS ==========
+
+modalities:
+  # PPM modalities
+  ppm_10x:
+    objective: 
+      id: 'LOCI_10x_001'
+      autofocus: *af_10x
+    cameras: &pixels_10x
+      LOCI_CAMERA_002: 0.4537
+      LOCI_CAMERA_003: 0.6866
+    white_balance: *ppm_wb
+    rotation_angles: *ppm_angles
+    background_correction: 
+      folder: *bg_ppm_10x
+      
+  ppm_20x:
+    objective: 
+      id: 'LOCI_20x_003'
+      autofocus: *af_20x
+    cameras: &pixels_20x
+      LOCI_CAMERA_002: 0.2271
+      LOCI_CAMERA_003: 0.3433
+    white_balance: *ppm_wb
+    rotation_angles: *ppm_angles
+    background_correction: 
+      folder: *bg_ppm_20x
+    
+  ppm_40x:
+    objective: 
+      id: 'LOCI_40x_001'
+      autofocus: *af_40x
+    cameras: &pixels_40x
+      LOCI_CAMERA_002: 0.1142
+      LOCI_CAMERA_003: 0.1709
+    white_balance: *ppm_wb
+    rotation_angles: *ppm_angles
+    background_correction: 
+      folder: *bg_ppm_40x
+
+  # Brightfield modalities
+  bf_10x:
+    objective: 
+      id: 'LOCI_10x_001'
+      autofocus: *af_10x
+    cameras: *pixels_10x
+    white_balance: *bf_wb
+    exposure_ms: *bf_exp_10x
+    background_correction: 
+      folder: *bg_bf_10x
+      
+  bf_20x:
+    objective: 
+      id: 'LOCI_20x_003'
+      autofocus: *af_20x
+    cameras: *pixels_20x
+    white_balance: *bf_wb
+    exposure_ms: *bf_exp_20x
+    background_correction: 
+      folder: *bg_bf_20x
+    
+  bf_40x:
+    objective: 
+      id: 'LOCI_40x_001'
+      autofocus: *af_40x
+    cameras: *pixels_40x
+    white_balance: *bf_wb
+    exposure_ms: *bf_exp_40x
+    background_correction: 
+      folder: *bg_bf_40x
+
+# ========== HARDWARE CONFIGURATION (rarely changed) ==========
 
 microscope:
   name: 'PPM'
   type: 'UprightBrightfield'
-  camera: 'LOCI_CAMERA_003' # JAI AP-3200T-USB
+  #default_camera: 'LOCI_CAMERA_003'
+  camera_in_use : null
+  lens_in_use: null
+  modality: null
 
 stage:
   r_stage: 'KBD101_Thor_Rotation' 
   z_stage: 'ZStage'
-  x_limit: 
-    low: -17000.0 
-    high: 33000.0
-  y_limit: 
-    low: -12000.0  
-    high: 13000.0
-  z_limit: 
-    low: -1800 # 40x will hit at 850-900
-    high: 100
-  id: 'LOCI_Stage_002' # Prior stage
-
-imaging_mode:
-  LOCI_CAMERA_002:
-    ppm_10x:
-      objective_lens: 'LOCI_10x_001'
-      pixel_size_um: 0.4537
-    ppm_20x:
-      objective_lens: 'LOCI_20x_003'
-      pixel_size_um: 0.2271
-    ppm_40x:
-      objective_lens: 'LOCI_40x_001'    
-      pixel_size_um: 0.1142
-  LOCI_CAMERA_003:
-    ppm_10x:
-      objective_lens: 'LOCI_10x_001'
-      pixel_size_um: 0.6866
-    ppm_20x:
-      objective_lens: 'LOCI_20x_003'
-      pixel_size_um: 0.3433
-    ppm_40x:
-      objective_lens: 'LOCI_40x_001'    
-      pixel_size_um: 0.1709
-
-white_balance:    
-  ppm:
-    crossed: [1.33363137 1.17596971 1.0]   # +0
-    uncrossed: [1.97220307 2.38955037 1.0  ] # +90
-    positive: [1.38673833 1.6424885  1.0]  # +5
-    negative: [1.81489925 1.70723008 1.0] # -5
-  default:
-    default: [1.000, 1.000, 1.000]
-
-slide_size:
-  x: 40000
-  y: 20000
-  
-autofocus:
-  n_steps: 9 # minimum 3
-  search_range: 20
-  n_tiles: 5
-  #interp_strength: 100
+  id: 'LOCI_Stage_002'
+  limits:
+    x: 
+      low: -17000.0
+      high: 33000.0
+    y: 
+      low: -12000.0
+      high: 13000.0
+    z: 
+      low: -1800
+      high: 100
 
 background_correction:
   enabled: true
   method: "divide"
-  background_folder: "D:/2025QPSC/data/background_tiles"
+  
+slide_size: 
+  x: 40000
+  y: 20000
