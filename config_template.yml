@@ -1,0 +1,256 @@
+# ========== MICROSCOPE CONFIGURATION SCHEMA TEMPLATE ==========
+# This template defines the structure for microscope configuration files
+# Replace placeholder values with actual hardware specifications
+
+# ========== REUSABLE DEFINITIONS ==========
+# Define anchors for values used multiple times
+
+# Camera-specific settings (for microscopes with multiple cameras)
+# For cameras with RGB control:
+#   - 'all': Single exposure value for R,G,B channels (simplified mode)
+#   - 'r,g,b': Individual channel exposures (advanced mode)
+#   - ConfigManager should check for 'all' first, fallback to r,g,b
+#   - Gains are always applied per-channel for white balance
+camera_settings:
+  CAMERA_ID_001:                # Replace with actual camera ID from resources
+    modality_exposures: &cam001_mod_exposures
+      # For single exposure cameras
+      setting1: 100
+      setting2: 200
+    modality_gains: &cam001_mod_gains
+      # Single gain value or RGB gains
+      gain: 1.0
+      
+  CAMERA_ID_002:                # Example: RGB camera with full control
+    modality_exposures: &cam002_mod_exposures
+      setting1:
+        all: 100                # Single exposure mode
+        r: 90                   # OR individual RGB mode
+        g: 100
+        b: 110
+      setting2:
+        all: 200
+        r: 180
+        g: 200
+        b: 220
+    modality_gains: &cam002_mod_gains
+      setting1: {r: 1.0, g: 1.0, b: 1.0}
+      setting2: {r: 1.1, g: 1.0, b: 1.05}
+
+# ========== MICROSCOPE CONFIGURATION ==========
+
+microscope:
+  name: 'MICROSCOPE_NAME'       # Unique identifier
+  type: 'MicroscopeType'        # e.g., 'Multimodal', 'UprightBrightfield'
+  detector_in_use: null         # Runtime state
+  objective_in_use: null        # Runtime state
+  modality: null                # Runtime state
+
+# ========== MODALITY-SPECIFIC SETTINGS ==========
+# Properties inherent to each imaging modality
+
+modalities:
+  modality_name_1:              # e.g., brightfield, fluorescence, ppm
+    type: 'modality_type'       # e.g., 'brightfield', 'fluorescence', 'polarized', 'multiphoton'
+    
+    # Hardware control specific to this modality
+    illumination:               # For transmitted light modalities
+      device: 'DeviceName'
+      control_type: 'voltage'   # or 'current', 'digital'
+      
+    # OR for laser-based modalities
+    laser:
+      device: 'LaserDevice'
+      wavelength_nm: 488
+      wavelength_range_nm: [400, 700]
+      
+    # For modalities with rotation control (e.g., PPM)
+    rotation_stage:             # NOT part of XYZ stage
+      device: 'RotationDevice'
+      type: 'polarizer'         # or 'waveplate', 'filter_wheel'
+    rotation_angles:            # For PPM
+      - name: 'position_name'
+        value: 0                # degrees or device units
+        tick: 0                 # device-specific units
+      
+    # Background correction method for this modality
+    background_correction:
+      enabled: true
+      method: 'divide'          # Options: 'divide', 'subtract', 'none'
+      base_folder: "D:/path/to/backgrounds"
+      # Path pattern: {base}/{microscope}/{modality}/{magnification}x/{detector}/
+      
+    # For modalities with variable magnification (e.g., SHG with zoom)
+    magnification_control:
+      type: 'zoom'              # or 'fixed'
+      device: 'ZoomDevice'      # If applicable
+      range: [1.0, 10.0]        # Min/max zoom factor
+
+# ========== DETECTOR CAPABILITIES ==========
+# Hardware capabilities of each detector
+
+detectors:
+  DETECTOR_ID_001:              # Must match ID in resources file
+    compatible_modalities: ['modality1', 'modality2']
+    channel_control: 'single'   # Options: 'single', 'gain_only', 'full_rgb'
+    short_name: 'det1'          # Used in profile naming
+    
+  DETECTOR_ID_002:
+    compatible_modalities: ['modality1', 'modality3']
+    channel_control: 'full_rgb'
+    short_name: 'det2'
+
+# ========== OBJECTIVE-SPECIFIC SETTINGS ==========
+# Properties inherent to objective lenses
+# Autofocus parameters are integrated directly here
+
+objectives:
+  OBJECTIVE_ID_001:             # Must match ID in resources file
+    # Autofocus parameters specific to this objective
+    autofocus:
+      n_steps: 7                # Number of focus steps
+      search_range_um: 100      # Total Z range to search
+      n_tiles: 3                # Number of tiles to sample
+    
+    # Fixed pixel size for camera-based detection
+    pixel_size_xy_um:
+      DETECTOR_ID_001: 1.105
+      DETECTOR_ID_002: 0.876
+      
+  OBJECTIVE_ID_002:
+    autofocus:
+      n_steps: 11
+      search_range_um: 25
+      n_tiles: 5
+      
+    pixel_size_xy_um:
+      DETECTOR_ID_001: 0.553
+      DETECTOR_ID_002: 0.438
+      
+    # For scanning modalities with variable pixel size
+    scan_parameters:            # Alternative/addition to fixed pixel_size_xy_um
+      base_fov_um: 500          # Field of view at zoom = 1.0
+      # Pixel size = base_fov_um / (scan_resolution * zoom_factor)
+
+# ========== ACQUISITION PROFILES ==========
+# Named combinations of modality + objective + detector + settings
+# IMPORTANT: When multiple detectors exist for an objective, ALL profiles should specify the detector
+
+acquisition_profiles:
+  # Profile naming convention:
+  # - Single detector: {modality}_{magnification}x
+  # - Multiple detectors: {modality}_{magnification}x_{detector_short_name}
+  # Be consistent - if ANY objective has multiple detector options, use explicit naming for ALL
+  
+  profile_name_1:               # e.g., bf_10x_jai, ppm_20x_mp6
+    modality: 'modality_name'
+    objective: 'OBJECTIVE_ID'
+    detector: 'DETECTOR_ID'
+    
+    # Optional: stage positions for this combination
+    stage_positions: 
+      z_um: -9200
+      f_um: -3200               # If stage has separate focus axis
+    
+    # Optional: hardware positions
+    objective_turret_position: 'Position-1'
+    filter_position: 'Filter-1'
+    
+    # Acquisition parameters specific to this combination
+    acquisition_settings:
+      # For camera-based detection
+      exposure_ms: 50           # Single value or reference to anchor
+      gain: 1.0
+      binning: 1
+      
+      # For RGB cameras with separate control
+      exposures_ms: *cam001_mod_exposures
+      gains_rgb: *cam001_mod_gains
+      
+      # For scanning/PMT detection
+      pmt_gain: 0.75
+      pixel_dwell_time_us: 4.0
+      averaging: 2
+      scan_mode: 'bidirectional'
+      
+      # For variable magnification modalities
+      zoom_factor: 1.0          # Used to calculate actual pixel size
+      scan_resolution_px: [512, 512]
+      
+      # Modality-specific settings
+      lamp_voltage: 4.0         # For brightfield
+      laser_power_percent: 30   # For laser-based
+
+# ========== STAGE CONFIGURATION ==========
+# Only references stage for sample positioning
+# Device mappings (x_device, y_device, etc.) are defined in resources file
+
+stage:
+  stage_id: 'STAGE_ID_001'      # References stage in resources file
+  
+  # Movement limits
+  limits:
+    x_um:
+      low: -20000
+      high: 20000
+    y_um:
+      low: -15000
+      high: 15000
+    z_um:
+      low: -5000
+      high: 5000
+    f_um:                       # If stage has separate focus axis
+      low: -10000
+      high: 0
+
+# ========== GENERAL SETTINGS ==========
+
+# Slide dimensions
+slide_size_um:
+  x: 40000
+  y: 20000
+
+# Additional hardware devices
+objective_slider:               # If applicable
+  device: 'TurretDevice'
+  label_device: 'LabelReader'
+
+# ========== SCHEMA NOTES ==========
+#
+# 1. CONSISTENCY: When multiple detectors exist, ALL profiles should explicitly specify detector
+#    - Use format: {modality}_{magnification}x_{detector_short_name}
+#    - Be systematic - include ALL combinations or document why some are excluded
+#
+# 2. PIXEL SIZE CALCULATION:
+#    - Fixed detectors: pixel_size specified per objective/detector combination
+#    - Scanning detectors: pixel_size = base_fov_um / (scan_resolution * zoom_factor)
+#    - PMT detectors: pixel size determined by scan settings
+#
+# 3. BACKGROUND CORRECTION:
+#    - Each modality defines its own correction method and settings
+#    - Methods: 'divide', 'subtract', 'none'
+#    - Path pattern: {base}/{microscope}/{modality}/{mag}x/{detector}/
+#    - Additional patterns per modality (e.g., {angle_name}_background.tif for PPM)
+#
+# 4. RUNTIME vs CONFIG:
+#    - Config: Hardware capabilities and fixed settings
+#    - Runtime: Current state (detector_in_use, objective_in_use, etc.)
+#
+# 5. EXPOSURE MODES (for RGB cameras):
+#    - Single mode: Use 'all' field for one exposure value, white balance via gains
+#    - RGB mode: Use 'r', 'g', 'b' fields for individual control
+#    - ConfigManager checks for 'all' first, falls back to r,g,b
+#
+# 6. AUTOFOCUS:
+#    - Parameters integrated directly into objectives section
+#    - Each objective has its own optimized settings
+#
+# 7. STAGE SEPARATION:
+#    - XYZ stages: For sample positioning only
+#    - Rotation stages: Referenced in modality settings (e.g., PPM polarizer)
+#    - Stage device mappings belong in resources file, not config
+#
+# 8. REFERENCES:
+#    - All hardware IDs must match entries in resources file
+#    - Use YAML anchors to avoid duplication
+#    - Camera settings can be referenced throughout profiles

@@ -1,156 +1,275 @@
-# ========== FREQUENTLY ADJUSTED SETTINGS ==========
+# ========== PPM MICROSCOPE CONFIGURATION ==========
+# References hardware from resources_LOCI.yml
 
-# White balance calibration
-calibration:
-  ppm_white_balance: &ppm_wb
-    crossed: [1.33363137, 1.17596971, 1.0]
-    uncrossed: [1.97220307, 2.38955037, 1.0]
-    positive: [1.38673833, 1.6424885, 1.0]
-    negative: [1.81489925, 1.70723008, 1.0]
-  
-  bf_white_balance: &bf_wb
-    default: [1.0, 1.0, 1.0]
+# ========== REUSABLE DEFINITIONS ==========
 
-# Autofocus parameters per objective
-autofocus:
-  lens10x: &af_10x
-    n_steps: 9
-    search_range: 50
-    n_tiles: 5
-  lens20x: &af_20x
-    n_steps: 11
-    search_range: 25
-    n_tiles: 5
-  lens40x: &af_40x
-    n_steps: 15
-    search_range: 10
-    n_tiles: 7
+# Camera-specific exposure and gain settings
+# For JAI camera exposures:
+#   - 'all': Single exposure value for R,G,B channels (simplified white balance via gains only)
+#   - 'r,g,b': Individual channel exposures (advanced white balance via exposure ratios)
+#   - ConfigManager should check for 'all' first, fallback to r,g,b if not present
+#   - Gains are always applied per-channel regardless of exposure mode
+camera_settings:
+  LOCI_CAMERA_002:  # MicroPublisher 6
+    ppm_exposures: &cam002_ppm_exposures
+      negative: 500
+      crossed: 800
+      positive: 500
+      uncrossed: 10
+    ppm_gains: &cam002_ppm_gains  # Constant across all angles
+      r: 1.2
+      g: 1.0
+      b: 1.1
+    bf_exposures: &cam002_bf_exposures
+      10x: 50
+      20x: 80
+      40x: 120
 
-# Exposure settings
-exposures:
-  ppm_angles: &ppm_angles
-    - name: 'negative'
-      tick: -5
-      exposure_ms: 500
-    - name: 'crossed'
-      tick: 0
-      exposure_ms: 800
-    - name: 'positive'
-      tick: 5
-      exposure_ms: 500
-    - name: 'uncrossed'
-      tick: 90
-      exposure_ms: 10
-  
-  brightfield:
-    lens10x: &bf_exp_10x 50
-    lens20x: &bf_exp_20x 80
-    lens40x: &bf_exp_40x 120
+  LOCI_CAMERA_003:  # JAI prism camera (supports both single and RGB exposure modes)
+    ppm_exposures: &cam003_ppm_exposures
+      negative:
+        all: 500  # Single exposure for all channels (simplified mode)
+        r: 450    # Individual RGB exposures (advanced mode)
+        g: 500    # ConfigManager chooses which mode to use
+        b: 550
+      crossed:
+        all: 800  
+        r: 750    
+        g: 800
+        b: 850
+      positive:
+        all: 500  
+        r: 450    
+        g: 500
+        b: 550
+      uncrossed:
+        all: 10   
+        r: 8      
+        g: 10
+        b: 12
+    ppm_gains: &cam003_ppm_gains  # Always applied per-channel for white balance
+      negative: {r: 1.0, g: 1.0, b: 1.0}
+      crossed: {r: 1.1, g: 1.0, b: 1.05}
+      positive: {r: 1.0, g: 1.0, b: 1.0}
+      uncrossed: {r: 1.2, g: 1.0, b: 1.1}
+    bf_exposures: &cam003_bf_exposures
+      10x: 50
+      20x: 80
+      40x: 120
 
-# Background correction paths
-backgrounds:
-  base_folder: &bg_base "D:/2025QPSC/data/background_tiles"
-
-# ========== MODALITY DEFINITIONS ==========
-
-modalities:
-  # PPM modalities
-  ppm_10x:
-    objective: 
-      id: 'LOCI_10x_001'
-      autofocus: *af_10x
-    cameras: &pixels_10x
-      LOCI_CAMERA_002: 0.4537
-      LOCI_CAMERA_003: 0.6866
-    white_balance: *ppm_wb
-    rotation_angles: *ppm_angles
-    background_correction: 
-      folder: *bg_ppm_10x
-      
-  ppm_20x:
-    objective: 
-      id: 'LOCI_20x_003'
-      autofocus: *af_20x
-    cameras: &pixels_20x
-      LOCI_CAMERA_002: 0.2271
-      LOCI_CAMERA_003: 0.3433
-    white_balance: *ppm_wb
-    rotation_angles: *ppm_angles
-    background_correction: 
-      folder: *bg_ppm_20x
-    
-  ppm_40x:
-    objective: 
-      id: 'LOCI_40x_001'
-      autofocus: *af_40x
-    cameras: &pixels_40x
-      LOCI_CAMERA_002: 0.1142
-      LOCI_CAMERA_003: 0.1709
-    white_balance: *ppm_wb
-    rotation_angles: *ppm_angles
-    background_correction: 
-      folder: *bg_ppm_40x
-
-  # Brightfield modalities
-  bf_10x:
-    objective: 
-      id: 'LOCI_10x_001'
-      autofocus: *af_10x
-    cameras: *pixels_10x
-    white_balance: *bf_wb
-    exposure_ms: *bf_exp_10x
-    background_correction: 
-      folder: *bg_bf_10x
-      
-  bf_20x:
-    objective: 
-      id: 'LOCI_20x_003'
-      autofocus: *af_20x
-    cameras: *pixels_20x
-    white_balance: *bf_wb
-    exposure_ms: *bf_exp_20x
-    background_correction: 
-      folder: *bg_bf_20x
-    
-  bf_40x:
-    objective: 
-      id: 'LOCI_40x_001'
-      autofocus: *af_40x
-    cameras: *pixels_40x
-    white_balance: *bf_wb
-    exposure_ms: *bf_exp_40x
-    background_correction: 
-      folder: *bg_bf_40x
-
-# ========== HARDWARE CONFIGURATION (rarely changed) ==========
+# ========== MICROSCOPE CONFIGURATION ==========
 
 microscope:
   name: 'PPM'
   type: 'UprightBrightfield'
-  #default_camera: 'LOCI_CAMERA_003'
-  camera_in_use : null
-  lens_in_use: null
+  detector_in_use: null
+  objective_in_use: null
   modality: null
 
+# ========== MODALITY-SPECIFIC SETTINGS ==========
+# Only inherent properties of the imaging modality
+
+modalities:
+  ppm:
+    type: 'polarized'
+    # Rotation stage is separate hardware, not part of XYZ stage
+    rotation_stage:
+      device: 'KBD101_Thor_Rotation'
+      type: 'polarizer'
+    rotation_angles:
+      - name: 'negative'
+        tick: -5
+      - name: 'crossed'
+        tick: 0
+      - name: 'positive'
+        tick: 5
+      - name: 'uncrossed'
+        tick: 90
+    background_correction:
+      enabled: true
+      method: 'divide'
+      base_folder: "D:/2025QPSC/data/background_tiles"
+      # Path: {base_folder}/{microscope}/ppm/{magnification}x/{detector}/{angle_name}_background.tif
+        
+  brightfield:
+    type: 'brightfield'
+    background_correction:
+      enabled: true
+      method: 'divide'
+      base_folder: "D:/2025QPSC/data/background_tiles"
+      # Path: {base_folder}/{microscope}/brightfield/{magnification}x/{detector}/background.tif
+
+# ========== DETECTOR CAPABILITIES ==========
+# Hardware capabilities only
+
+detectors:
+  LOCI_CAMERA_002:  # MicroPublisher 6
+    compatible_modalities: ['ppm', 'brightfield']
+    channel_control: 'gain_only'  # Can adjust R,G,B gains but single exposure
+    short_name: 'mp6'
+    
+  LOCI_CAMERA_003:  # JAI prism camera  
+    compatible_modalities: ['ppm', 'brightfield']
+    channel_control: 'full_rgb'  # Can adjust R,G,B exposures and gains independently
+    short_name: 'jai'
+
+# ========== OBJECTIVE-SPECIFIC SETTINGS ==========
+# Lens-specific properties with integrated autofocus parameters
+
+objectives:
+  LOCI_10x_001:
+    autofocus:
+      n_steps: 9
+      search_range_um: 50
+      n_tiles: 5
+    pixel_size_xy_um:
+      LOCI_CAMERA_002: 0.4537
+      LOCI_CAMERA_003: 0.6866
+      
+  LOCI_20x_003:
+    autofocus:
+      n_steps: 11
+      search_range_um: 25
+      n_tiles: 5
+    pixel_size_xy_um:
+      LOCI_CAMERA_002: 0.2271
+      LOCI_CAMERA_003: 0.3433
+      
+  LOCI_40x_001:
+    autofocus:
+      n_steps: 15
+      search_range_um: 10
+      n_tiles: 7
+    pixel_size_xy_um:
+      LOCI_CAMERA_002: 0.1142
+      LOCI_CAMERA_003: 0.1709
+
+# ========== ACQUISITION PROFILES ==========
+# ALL combinations of modality × objective × detector
+# Naming: {modality}_{magnification}x_{camera_short_name}
+
+acquisition_profiles:
+  # ===== PPM MODALITY - 10x OBJECTIVE =====
+  ppm_10x_jai:
+    modality: 'ppm'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposures_ms: *cam003_ppm_exposures
+      gains_rgb: *cam003_ppm_gains
+      
+  ppm_10x_mp6:
+    modality: 'ppm'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposures_ms: *cam002_ppm_exposures
+      gains_rgb: *cam002_ppm_gains
+
+  # ===== PPM MODALITY - 20x OBJECTIVE =====
+  ppm_20x_jai:
+    modality: 'ppm'
+    objective: 'LOCI_20x_003'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposures_ms: *cam003_ppm_exposures
+      gains_rgb: *cam003_ppm_gains
+      
+  ppm_20x_mp6:  # NEW - Added for completeness
+    modality: 'ppm'
+    objective: 'LOCI_20x_003'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposures_ms: *cam002_ppm_exposures
+      gains_rgb: *cam002_ppm_gains
+
+  # ===== PPM MODALITY - 40x OBJECTIVE =====
+  ppm_40x_jai:
+    modality: 'ppm'
+    objective: 'LOCI_40x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposures_ms: *cam003_ppm_exposures
+      gains_rgb: *cam003_ppm_gains
+      
+  ppm_40x_mp6:  # NEW - Added for completeness
+    modality: 'ppm'
+    objective: 'LOCI_40x_001'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposures_ms: *cam002_ppm_exposures
+      gains_rgb: *cam002_ppm_gains
+
+  # ===== BRIGHTFIELD MODALITY - 10x OBJECTIVE =====
+  bf_10x_jai:
+    modality: 'brightfield'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposure_ms: 50  # From cam003_bf_exposures['10x']
+      gain: 1.0
+      
+  bf_10x_mp6:
+    modality: 'brightfield'
+    objective: 'LOCI_10x_001'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposure_ms: 50  # From cam002_bf_exposures['10x']
+      gains_rgb: *cam002_ppm_gains  # Same RGB gains as PPM mode
+
+  # ===== BRIGHTFIELD MODALITY - 20x OBJECTIVE =====
+  bf_20x_jai:
+    modality: 'brightfield'
+    objective: 'LOCI_20x_003'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposure_ms: 80  # From cam003_bf_exposures['20x']
+      gain: 1.0
+      
+  bf_20x_mp6:  # NEW - Added for completeness
+    modality: 'brightfield'
+    objective: 'LOCI_20x_003'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposure_ms: 80  # From cam002_bf_exposures['20x']
+      gains_rgb: *cam002_ppm_gains
+
+  # ===== BRIGHTFIELD MODALITY - 40x OBJECTIVE =====
+  bf_40x_jai:
+    modality: 'brightfield'
+    objective: 'LOCI_40x_001'
+    detector: 'LOCI_CAMERA_003'
+    acquisition_settings:
+      exposure_ms: 120  # From cam003_bf_exposures['40x']
+      gain: 1.0
+      
+  bf_40x_mp6:  # NEW - Added for completeness
+    modality: 'brightfield'
+    objective: 'LOCI_40x_001'
+    detector: 'LOCI_CAMERA_002'
+    acquisition_settings:
+      exposure_ms: 120  # From cam002_bf_exposures['40x']
+      gains_rgb: *cam002_ppm_gains
+
+# ========== STAGE CONFIGURATION ==========
+# Only references XYZ stage for sample positioning
+
 stage:
-  r_stage: 'KBD101_Thor_Rotation' 
-  z_stage: 'ZStage'
-  id: 'LOCI_Stage_002'
+  stage_id: 'LOCI_STAGE_002'  # References Prior XYZ stage in resources
+  # Note: rotation stage is referenced in modality, not here
   limits:
-    x: 
-      low: -17000.0
-      high: 33000.0
-    y: 
-      low: -12000.0
-      high: 13000.0
-    z: 
+    x_um:
+      low: -17000
+      high: 33000
+    y_um:
+      low: -12000
+      high: 13000
+    z_um:
       low: -1800
       high: 100
 
-background_correction:
-  enabled: true
-  method: "divide"
-  
-slide_size: 
+# ========== GENERAL SETTINGS ==========
+
+slide_size_um:
   x: 40000
   y: 20000
