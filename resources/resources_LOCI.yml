@@ -59,6 +59,7 @@ id_detector:
         height_px: 2200
         sensor_pixel_width_um: 4.54
         sensor_pixel_height_um: 4.54
+        requires_debayering: true
         description: null
         
     LOCI_DETECTOR_JAI_001:
@@ -68,6 +69,7 @@ id_detector:
         height_px: 1544
         sensor_pixel_width_um: 5.5
         sensor_pixel_height_um: 5.5
+        requires_debayering: false
         description: 'JAI 3-CCD prism detector'
 
 id_objective_lens:

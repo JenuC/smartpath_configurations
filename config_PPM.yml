@@ -27,14 +27,14 @@ modalities:
     background_correction:
       enabled: true
       method: 'divide'
-      base_folder: "D:/2025QPSC/data/background_tiles"
+      base_folder: "D:/2025QPSC/data/background_tiles/" #background will be + 'polarized' + angle
         
   brightfield:
     type: 'brightfield'
     background_correction:
       enabled: true
       method: 'divide'
-      base_folder: "D:/2025QPSC/data/background_tiles"
+      base_folder: "D:/2025QPSC/data/background_tiles" #background will be + 'brightfield'
 
 # ========== ACQUISITION PROFILES ==========
 acq_profiles_new:
