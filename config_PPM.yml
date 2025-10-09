@@ -1,6 +1,8 @@
 # ========== PPM MICROSCOPE CONFIGURATION ==========
 # References hardware from resources_LOCI.yml
 
+ppm_optics : "NA"
+
 microscope:
   name: 'PPM'
   type: 'UprightBrightfield'
