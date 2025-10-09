@@ -306,7 +306,7 @@ stage:
       low: -12000
       high: 13000
     z_um:
-      low: -2600 #stage raised with sample close to objective, this is the important one to NOT DAMAGE OBJECTIVE. SET CAREFULLY WITH HIGHEST POWER OBJECTIVE.
+      low: -5601 #stage raised with sample close to objective, this is the important one to NOT DAMAGE OBJECTIVE. SET CAREFULLY WITH HIGHEST POWER OBJECTIVE.
       high: -1600 #stage lowered far from objective
 
 # ========== GENERAL SETTINGS ==========
