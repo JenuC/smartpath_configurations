@@ -1,7 +1,7 @@
 # ========== PPM MICROSCOPE CONFIGURATION ==========
 # References hardware from resources_LOCI.yml
 
-ppm_optics : "NA"
+ppm_optics : 1 # change to "NA" if you want BF
 
 microscope:
   name: 'PPM'
