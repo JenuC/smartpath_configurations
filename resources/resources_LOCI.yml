@@ -33,6 +33,16 @@ id_stage:
         units: 'ticks'  # 1 tick = 2 degrees
         resolution: 0.001  # degrees per tick
         
+    LOCI_STAGE_PI_001:
+        name: 'PI Z Stage Axis 4'
+        vendor: 'PI'
+        model: 'U651 stage C-867 controller PI_GCS_2:MM2'
+        serial: '??'
+        type: 'rotational motor'
+        device: 'PIZStage'
+        units: 'ticks'  # 1 tick = 2 degrees
+        resolution: 0.001  # degrees per tick
+        
 id_detector:
     LOCI_DETECTOR_QCAM_001:
         name: 'QCAM'
