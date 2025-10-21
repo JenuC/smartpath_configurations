@@ -15,7 +15,7 @@ modalities:
   ppm:
     type: 'polarized'
     rotation_stage:
-      device: 'LOCI_STAGE_THORLABS_001'
+      device: 'LOCI_STAGE_PI_001'
       type: 'polarizer'
     rotation_angles:
       - name: 'negative'
