@@ -2,6 +2,7 @@
 # References hardware from resources_LOCI.yml
 
 ppm_optics : 1 # change to "NA" if you want BF
+ppm_pizstage_offset : 50228.7
 
 microscope:
   name: 'PPM'
@@ -15,7 +16,7 @@ modalities:
   ppm:
     type: 'polarized'
     rotation_stage:
-      device: 'LOCI_STAGE_THORLABS_001'
+      device: 'LOCI_STAGE_PI_001'
       type: 'polarizer'
     rotation_angles:
       - name: 'negative'
