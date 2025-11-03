@@ -1,0 +1,22 @@
+# ========== AUTOFOCUS CONFIGURATION ==========
+# Autofocus parameters per objective
+# These settings control the autofocus behavior during image acquisition
+#
+# Parameters:
+#   n_steps: Number of Z positions to sample during autofocus (higher = more accurate but slower)
+#   search_range_um: Total Z range to search in micrometers (centered on current position)
+#   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
+
+autofocus_settings:
+- objective: LOCI_OBJECTIVE_OLYMPUS_10X_001
+  n_steps: 24
+  search_range_um: 15.0
+  n_tiles: 5
+- objective: LOCI_OBJECTIVE_OLYMPUS_20X_POL_001
+  n_steps: 18
+  search_range_um: 9.0
+  n_tiles: 5
+- objective: LOCI_OBJECTIVE_OLYMPUS_40X_POL_001
+  n_steps: 24
+  search_range_um: 6.0
+  n_tiles: 5

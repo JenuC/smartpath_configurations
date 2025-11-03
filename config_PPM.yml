@@ -2,7 +2,7 @@
 # References hardware from resources_LOCI.yml
 
 ppm_optics : 1 # change to "NA" if you want BF
-ppm_pizstage_offset : 50228.7
+ppm_pizstage_offset : -1800
 
 microscope:
   name: 'PPM'
@@ -20,13 +20,13 @@ modalities:
       type: 'polarizer'
     rotation_angles:
       - name: 'negative'
-        tick: -5  # 1 tick = 2 degrees
+        tick: -5  # 1 tick = 1 degrees
       - name: 'crossed'
-        tick: 0   # 1 tick = 2 degrees
+        tick: 0   # 1 tick = 1 degrees
       - name: 'positive'
-        tick: 5   # 1 tick = 2 degrees
+        tick: 5   # 1 tick = 1 degrees
       - name: 'uncrossed'
-        tick: 90  # 1 tick = 2 degrees
+        tick: 90  # 1 tick = 1 degrees
     background_correction:
       enabled: true
       method: 'divide'
@@ -56,7 +56,7 @@ acq_profiles_new:
     - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
       settings:
         autofocus:
-          n_steps: 11
+          n_steps: 30
           search_range_um: 15
           n_tiles: 5
         pixel_size_xy_um:
