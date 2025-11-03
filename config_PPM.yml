@@ -11,6 +11,8 @@ microscope:
   objective_in_use: null
   modality: null
 
+test-push:
+  MSN: 'PPM_001'
 # ========== MODALITY-SPECIFIC SETTINGS ==========
 modalities:
   ppm:
