@@ -1,4 +1,4 @@
-# ========== AUTOFOCUS CONFIGURATION ==========
+
 # Autofocus parameters per objective
 # These settings control the autofocus behavior during image acquisition
 #
@@ -8,15 +8,17 @@
 #   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
 
 autofocus_settings:
-- objective: LOCI_OBJECTIVE_OLYMPUS_10X_001
-  n_steps: 24
-  search_range_um: 15.0
-  n_tiles: 5
-- objective: LOCI_OBJECTIVE_OLYMPUS_20X_POL_001
-  n_steps: 18
-  search_range_um: 9.0
-  n_tiles: 5
-- objective: LOCI_OBJECTIVE_OLYMPUS_40X_POL_001
-  n_steps: 24
-  search_range_um: 6.0
-  n_tiles: 5
+  - objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
+    n_steps: 9
+    search_range_um: 15.0
+    n_tiles: 5
+
+  - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
+    n_steps: 11
+    search_range_um: 15.0
+    n_tiles: 5
+
+  - objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
+    n_steps: 15
+    search_range_um: 10.0
+    n_tiles: 7

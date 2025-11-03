@@ -40,35 +40,29 @@ modalities:
       base_folder: "D:/2025QPSC/data/background_tiles" #background will be + 'brightfield'
 
 # ========== ACQUISITION PROFILES ==========
+# NOTE: Autofocus settings have been moved to autofocus_PPM.yml for easier editing
 acq_profiles_new:
   defaults:
     # Default settings by objective that apply unless overridden in specific profile
     - objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
       settings:
-        autofocus:
-          n_steps: 9
-          search_range_um: 15
-          n_tiles: 5
         pixel_size_xy_um:
           LOCI_DETECTOR_TELEDYNE_001: 0.4537  # MicroPublisher 6
           LOCI_DETECTOR_JAI_001: 0.6866       # JAI prism detector
-          
+
     - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
       settings:
         autofocus:
           n_steps: 30
           search_range_um: 15
           n_tiles: 5
+
         pixel_size_xy_um:
           LOCI_DETECTOR_TELEDYNE_001: 0.2271
           LOCI_DETECTOR_JAI_001: 0.3433
-          
+
     - objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
       settings:
-        autofocus:
-          n_steps: 15
-          search_range_um: 10
-          n_tiles: 7
         pixel_size_xy_um:
           LOCI_DETECTOR_TELEDYNE_001: 0.1142
           LOCI_DETECTOR_JAI_001: 0.1709
