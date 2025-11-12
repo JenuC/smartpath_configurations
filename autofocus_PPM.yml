@@ -2,12 +2,19 @@
 # Autofocus parameters per objective
 # These settings control the autofocus behavior during image acquisition
 #
-# Parameters:
+# STANDARD AUTOFOCUS (used for first tissue position):
 #   n_steps: Number of Z positions to sample during autofocus (higher = more accurate but slower)
 #   search_range_um: Total Z range to search in micrometers (centered on current position)
-#   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
 #   interp_strength: Interpolation density factor for focus curve fitting (typical: 50-200)
 #   interp_kind: Interpolation method - 'linear', 'quadratic', or 'cubic'
+#
+# ADAPTIVE AUTOFOCUS (drift-check for subsequent positions, runs every n_tiles):
+#   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
+#   adaptive_initial_step_um: Sets sampling range (default: 10um -> samples ±4um around current position)
+#   adaptive_min_step_um: Movement threshold (default: 2um -> only moves if drift >1um detected)
+#   Note: Adaptive autofocus uses 5 fixed samples for speed, always symmetric to prevent bias
+#
+# COMMON:
 #   score_metric: Focus sharpness metric - 'laplacian_variance' (fast ~5ms), 'sobel' (fast ~5ms),
 #                 'brenner_gradient' (fastest ~3ms), 'robust_sharpness' (particle-resistant ~20ms),
 #                 or 'hybrid_sharpness' (balanced ~8ms)
