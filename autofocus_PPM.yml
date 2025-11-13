@@ -12,7 +12,16 @@
 #   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
 #   adaptive_initial_step_um: Sets sampling range (default: 10um -> samples ±4um around current position)
 #   adaptive_min_step_um: Movement threshold (default: 2um -> only moves if drift >1um detected)
+#   large_drift_threshold_um: If adaptive detects drift > this value, switches to STANDARD autofocus (default: 4.0um)
 #   Note: Adaptive autofocus uses 5 fixed samples for speed, always symmetric to prevent bias
+#
+# TISSUE DETECTION (determines when to run autofocus):
+#   texture_threshold: Minimum texture variance for tissue detection (default: 0.005)
+#   tissue_area_threshold: Minimum fraction of tile that must be tissue (default: 0.2 = 20%)
+#   rgb_brightness_threshold: Maximum average RGB brightness (default: 225.0)
+#     - Tiles brighter than this are rejected as blank/background before texture analysis
+#     - Blank glass typically has RGB 230-240, tissue has RGB 190-224
+#     - Set to null to disable RGB checking (not recommended)
 #
 # COMMON:
 #   score_metric: Focus sharpness metric - 'laplacian_variance' (fast ~5ms), 'sobel' (fast ~5ms),
