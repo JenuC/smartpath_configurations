@@ -22,11 +22,11 @@ modalities:
       type: 'polarizer'
     rotation_angles:
       - name: 'negative'
-        tick: -5  # 1 tick = 1 degrees
+        tick: -7  # 1 tick = 1 degrees
       - name: 'crossed'
         tick: 0   # 1 tick = 1 degrees
       - name: 'positive'
-        tick: 5   # 1 tick = 1 degrees
+        tick: 7   # 1 tick = 1 degrees
       - name: 'uncrossed'
         tick: 90  # 1 tick = 1 degrees
     background_correction:
