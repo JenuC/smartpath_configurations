@@ -50,7 +50,7 @@ acq_profiles_new:
       settings:
         pixel_size_xy_um:
           LOCI_DETECTOR_TELEDYNE_001: 0.4537  # MicroPublisher 6
-          LOCI_DETECTOR_JAI_001: 0.3433      # JAI prism detector
+          LOCI_DETECTOR_JAI_001: 0.347      # JAI prism detector
 
     - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
       settings:
@@ -61,13 +61,13 @@ acq_profiles_new:
 
         pixel_size_xy_um:
           LOCI_DETECTOR_TELEDYNE_001: 0.2271
-          LOCI_DETECTOR_JAI_001: 0.3433
+          LOCI_DETECTOR_JAI_001: 0.1725
 
     - objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
       settings:
         pixel_size_xy_um:
           LOCI_DETECTOR_TELEDYNE_001: 0.1142
-          LOCI_DETECTOR_JAI_001: 0.1709
+          LOCI_DETECTOR_JAI_001: 0.0871
 
   profiles:
     # ===== PPM 10x PROFILES =====
