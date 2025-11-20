@@ -17,6 +17,7 @@
 #                          Lower values accept sparse tissue, higher values require fuller coverage
 
 autofocus_settings:
+<<<<<<< HEAD
 - objective: LOCI_OBJECTIVE_OLYMPUS_10X_001
   n_steps: 35
   search_range_um: 50.0
@@ -56,3 +57,29 @@ autofocus_settings:
   adaptive_min_step_um: 0.5
   adaptive_max_steps: 25
   adaptive_focus_threshold: 0.95
+=======
+  - objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
+    n_steps: 9
+    search_range_um: 15.0
+    n_tiles: 5
+    interp_strength: 100
+    interp_kind: 'quadratic'
+    score_metric: 'laplacian_variance'
+    rgb_brightness_threshold: 200.0  # Lower threshold for 10x - blank glass ~230-240, tissue ~190-224
+
+  - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
+    n_steps: 11
+    search_range_um: 15.0
+    n_tiles: 5
+    interp_strength: 100
+    interp_kind: 'quadratic'
+    score_metric: 'laplacian_variance'
+
+  - objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
+    n_steps: 15
+    search_range_um: 10.0
+    n_tiles: 7
+    interp_strength: 100
+    interp_kind: 'quadratic'
+    score_metric: 'laplacian_variance'
+>>>>>>> 2e6c8369014af65394b5d459c2a05a6a3be4d0dd
