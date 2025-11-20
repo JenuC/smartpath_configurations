@@ -1,54 +1,58 @@
-
+# ========== AUTOFOCUS CONFIGURATION ==========
 # Autofocus parameters per objective
 # These settings control the autofocus behavior during image acquisition
 #
-# STANDARD AUTOFOCUS (used for first tissue position):
+# Parameters:
 #   n_steps: Number of Z positions to sample during autofocus (higher = more accurate but slower)
 #   search_range_um: Total Z range to search in micrometers (centered on current position)
+#   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
 #   interp_strength: Interpolation density factor for focus curve fitting (typical: 50-200)
 #   interp_kind: Interpolation method - 'linear', 'quadratic', or 'cubic'
-#
-# ADAPTIVE AUTOFOCUS (drift-check for subsequent positions, runs every n_tiles):
-#   n_tiles: Spatial frequency - autofocus runs every N tiles during large acquisitions (lower = more frequent but slower)
-#   adaptive_initial_step_um: Sets sampling range (default: 10um -> samples ±4um around current position)
-#   adaptive_min_step_um: Movement threshold (default: 2um -> only moves if drift >1um detected)
-#   large_drift_threshold_um: If adaptive detects drift > this value, switches to STANDARD autofocus (default: 4.0um)
-#   Note: Adaptive autofocus uses 5 fixed samples for speed, always symmetric to prevent bias
-#
-# TISSUE DETECTION (determines when to run autofocus):
-#   texture_threshold: Minimum texture variance for tissue detection (default: 0.005)
-#   tissue_area_threshold: Minimum fraction of tile that must be tissue (default: 0.2 = 20%)
-#   rgb_brightness_threshold: Maximum average RGB brightness (default: 225.0)
-#     - Tiles brighter than this are rejected as blank/background before texture analysis
-#     - Blank glass typically has RGB 230-240, tissue has RGB 190-224
-#     - Set to null to disable RGB checking (not recommended)
-#
-# COMMON:
 #   score_metric: Focus sharpness metric - 'laplacian_variance' (fast ~5ms), 'sobel' (fast ~5ms),
 #                 'brenner_gradient' (fastest ~3ms), 'robust_sharpness' (particle-resistant ~20ms),
 #                 or 'hybrid_sharpness' (balanced ~8ms)
+#   texture_threshold: Minimum texture variance for tissue detection (typical: 0.005-0.030)
+#                      Lower values accept smoother tissue, higher values require more texture
+#   tissue_area_threshold: Minimum fraction of image that must contain tissue (typical: 0.05-0.30)
+#                          Lower values accept sparse tissue, higher values require fuller coverage
 
 autofocus_settings:
-  - objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
-    n_steps: 9
-    search_range_um: 15.0
-    n_tiles: 5
-    interp_strength: 100
-    interp_kind: 'quadratic'
-    score_metric: 'laplacian_variance'
-
-  - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
-    n_steps: 11
-    search_range_um: 15.0
-    n_tiles: 5
-    interp_strength: 100
-    interp_kind: 'quadratic'
-    score_metric: 'laplacian_variance'
-
-  - objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
-    n_steps: 15
-    search_range_um: 10.0
-    n_tiles: 7
-    interp_strength: 100
-    interp_kind: 'quadratic'
-    score_metric: 'laplacian_variance'
+- objective: LOCI_OBJECTIVE_OLYMPUS_10X_001
+  n_steps: 35
+  search_range_um: 50.0
+  n_tiles: 5
+  interp_strength: 100
+  interp_kind: quadratic
+  score_metric: laplacian_variance
+  texture_threshold: 0.005
+  tissue_area_threshold: 0.2
+  adaptive_initial_step_um: 10.0
+  adaptive_min_step_um: 2.0
+  adaptive_max_steps: 25
+  adaptive_focus_threshold: 0.95
+- objective: LOCI_OBJECTIVE_OLYMPUS_20X_POL_001
+  n_steps: 25
+  search_range_um: 25.0
+  n_tiles: 2
+  interp_strength: 100
+  interp_kind: quadratic
+  score_metric: laplacian_variance
+  texture_threshold: 0.005
+  tissue_area_threshold: 0.2
+  adaptive_initial_step_um: 5.0
+  adaptive_min_step_um: 1.0
+  adaptive_max_steps: 25
+  adaptive_focus_threshold: 0.95
+- objective: LOCI_OBJECTIVE_OLYMPUS_40X_POL_001
+  n_steps: 15
+  search_range_um: 12.0
+  n_tiles: 7
+  interp_strength: 100
+  interp_kind: quadratic
+  score_metric: laplacian_variance
+  texture_threshold: 0.005
+  tissue_area_threshold: 0.2
+  adaptive_initial_step_um: 5.0
+  adaptive_min_step_um: 0.5
+  adaptive_max_steps: 25
+  adaptive_focus_threshold: 0.95

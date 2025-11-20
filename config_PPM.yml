@@ -2,7 +2,7 @@
 # References hardware from resources_LOCI.yml
 
 ppm_optics : 1 # change to "NA" if you want BF
-ppm_pizstage_offset : -1800
+ppm_pizstage_offset : -1906
 
 microscope:
   name: 'PPM'
