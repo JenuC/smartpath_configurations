@@ -1,0 +1,231 @@
+# ========== PPM IMAGE PROCESSING CONFIGURATION ==========
+# Software-related settings for image acquisition and processing
+# Includes: exposure times, gains, white balance, background correction
+# Future additions: denoising settings, color correction, etc.
+
+# ========== BACKGROUND CORRECTION ==========
+background_correction:
+  ppm:
+    enabled: true
+    method: 'divide'
+    base_folder: "D:/2025QPSC/data/background_tiles/"  # background will be + 'polarized' + angle
+  brightfield:
+    enabled: true
+    method: 'divide'
+    base_folder: "D:/2025QPSC/data/background_tiles"  # background will be + 'brightfield'
+
+# ========== IMAGING PROFILES ==========
+# Settings for each modality/objective/detector combination
+# Organized by modality -> objective -> detector
+
+imaging_profiles:
+  # ===== PPM PROFILES =====
+  ppm:
+    # ----- 10x Objective -----
+    LOCI_OBJECTIVE_OLYMPUS_10X_001:
+      LOCI_DETECTOR_TELEDYNE_001:
+        white_balance:
+          enabled: true
+        exposures_ms:
+          negative: 500
+          crossed: 800
+          positive: 500
+          uncrossed: 10
+        gains:
+          r: 1.2
+          g: 1.0
+          b: 1.1
+
+      LOCI_DETECTOR_JAI_001:
+        white_balance:
+          enabled: false  # Disable for JAI - using camera's internal WB
+        exposures_ms:
+          negative:
+            all: 80
+            r: 100
+            g: 100
+            b: 100
+          crossed:
+            all: 150
+            r: 150
+            g: 150
+            b: 150
+          positive:
+            all: 60
+            r: 50
+            g: 50
+            b: 50
+          uncrossed:
+            all: 1.2
+            r: 1.2
+            g: 1.2
+            b: 1.2
+        gains:
+          negative: {r: 1.0, g: 1.0, b: 1.0}
+          crossed: {r: 1.1, g: 1.0, b: 1.05}
+          positive: {r: 1.0, g: 1.0, b: 1.0}
+          uncrossed: {r: 1.2, g: 1.0, b: 1.1}
+
+    # ----- 20x Objective -----
+    LOCI_OBJECTIVE_OLYMPUS_20X_POL_001:
+      LOCI_DETECTOR_TELEDYNE_001:
+        white_balance:
+          enabled: true
+        exposures_ms:
+          negative: 800
+          crossed: 1200
+          positive: 800
+          uncrossed: 15
+        gains:
+          r: 1.2
+          g: 1.0
+          b: 1.1
+
+      LOCI_DETECTOR_JAI_001:
+        white_balance:
+          enabled: false  # Disable for JAI
+        exposures_ms:
+          uncrossed:
+            all: 15
+            r: 12
+            g: 15
+            b: 18
+          negative:
+            all: 800
+            r: 750
+            g: 800
+            b: 850
+          crossed:
+            all: 1200
+            r: 1150
+            g: 1200
+            b: 1250
+          positive:
+            all: 800
+            r: 750
+            g: 800
+            b: 850
+        gains:
+          negative: {r: 1.0, g: 1.0, b: 1.0}
+          crossed: {r: 1.1, g: 1.0, b: 1.05}
+          positive: {r: 1.0, g: 1.0, b: 1.0}
+          uncrossed: {r: 1.2, g: 1.0, b: 1.1}
+
+    # ----- 40x Objective -----
+    LOCI_OBJECTIVE_OLYMPUS_40X_POL_001:
+      LOCI_DETECTOR_TELEDYNE_001:
+        white_balance:
+          enabled: true
+        exposures_ms:
+          negative: 1500
+          crossed: 2000
+          positive: 1500
+          uncrossed: 25
+        gains:
+          r: 1.2
+          g: 1.0
+          b: 1.1
+
+      LOCI_DETECTOR_JAI_001:
+        white_balance:
+          enabled: false  # Disable for JAI
+        exposures_ms:
+          negative:
+            all: 1500
+            r: 1450
+            g: 1500
+            b: 1550
+          crossed:
+            all: 2000
+            r: 1950
+            g: 2000
+            b: 2050
+          positive:
+            all: 1500
+            r: 1450
+            g: 1500
+            b: 1550
+          uncrossed:
+            all: 25
+            r: 22
+            g: 25
+            b: 28
+        gains:
+          negative: {r: 1.0, g: 1.0, b: 1.0}
+          crossed: {r: 1.1, g: 1.0, b: 1.05}
+          positive: {r: 1.0, g: 1.0, b: 1.0}
+          uncrossed: {r: 1.2, g: 1.0, b: 1.1}
+
+  # ===== BRIGHTFIELD PROFILES =====
+  brightfield:
+    # ----- 10x Objective -----
+    LOCI_OBJECTIVE_OLYMPUS_10X_001:
+      LOCI_DETECTOR_TELEDYNE_001:
+        white_balance:
+          enabled: true
+        exposures_ms:
+          single: 50
+        gains:
+          r: 1.2
+          g: 1.0
+          b: 1.1
+
+      LOCI_DETECTOR_JAI_001:
+        white_balance:
+          enabled: false  # Disable for JAI
+        exposures_ms:
+          single: 50
+        gains:
+          single: 1.0
+
+    # ----- 20x Objective -----
+    LOCI_OBJECTIVE_OLYMPUS_20X_POL_001:
+      LOCI_DETECTOR_TELEDYNE_001:
+        white_balance:
+          enabled: true
+        exposures_ms:
+          single: 80
+        gains:
+          r: 1.2
+          g: 1.0
+          b: 1.1
+
+      LOCI_DETECTOR_JAI_001:
+        white_balance:
+          enabled: false  # Disable for JAI
+        exposures_ms:
+          single: 80
+        gains:
+          single: 1.0
+
+    # ----- 40x Objective -----
+    LOCI_OBJECTIVE_OLYMPUS_40X_POL_001:
+      LOCI_DETECTOR_TELEDYNE_001:
+        white_balance:
+          enabled: true
+        exposures_ms:
+          single: 120
+        gains:
+          r: 1.2
+          g: 1.0
+          b: 1.1
+
+      LOCI_DETECTOR_JAI_001:
+        white_balance:
+          enabled: false  # Disable for JAI
+        exposures_ms:
+          single: 120
+        gains:
+          single: 1.0
+
+# ========== FUTURE SETTINGS ==========
+# Placeholder sections for future image processing features
+
+# denoising:
+#   enabled: false
+#   method: 'gaussian'
+#   strength: 1.0
+
+# color_correction:
+#   enabled: false
+#   profile: null
