@@ -31,8 +31,8 @@ autofocus_settings:
   adaptive_max_steps: 25
   adaptive_focus_threshold: 0.95
 - objective: LOCI_OBJECTIVE_OLYMPUS_20X_POL_001
-  n_steps: 25
-  search_range_um: 25.0
+  n_steps: 40
+  search_range_um: 50.0
   n_tiles: 2
   interp_strength: 100
   interp_kind: quadratic
@@ -40,7 +40,7 @@ autofocus_settings:
   texture_threshold: 0.005
   tissue_area_threshold: 0.2
   adaptive_initial_step_um: 5.0
-  adaptive_min_step_um: 1.0
+  adaptive_min_step_um: 0.4
   adaptive_max_steps: 25
   adaptive_focus_threshold: 0.95
 - objective: LOCI_OBJECTIVE_OLYMPUS_40X_POL_001
@@ -56,4 +56,3 @@ autofocus_settings:
   adaptive_min_step_um: 0.5
   adaptive_max_steps: 25
   adaptive_focus_threshold: 0.95
-
