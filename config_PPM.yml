@@ -36,84 +36,30 @@ modalities:
   brightfield:
     type: 'brightfield'
 
-# ========== ACQUISITION PROFILES ==========
-# NOTE: Autofocus settings are in autofocus_PPM.yml
-# NOTE: Imaging conditions (exposure, gain, white balance) are in imageprocessing_PPM.yml
-acq_profiles:
-  defaults:
-    # Default settings by objective that apply unless overridden in specific profile
-    - objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
-      settings:
-        pixel_size_xy_um:
-          LOCI_DETECTOR_TELEDYNE_001: 0.4537  # MicroPublisher 6
-          LOCI_DETECTOR_JAI_001: 0.347      # JAI prism detector
+# ========== AVAILABLE HARDWARE ==========
+# Lists of available hardware components on this microscope.
+# All combinations of modality/objective/detector are currently valid.
+# NOTE: If specific combinations need to be restricted in the future,
+#       consider adding a 'restricted_combinations' section or reverting
+#       to explicit profile definitions.
+hardware:
+  objectives:
+    - id: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
+      pixel_size_xy_um:
+        LOCI_DETECTOR_TELEDYNE_001: 0.4537  # MicroPublisher 6
+        LOCI_DETECTOR_JAI_001: 0.347        # JAI prism detector
+    - id: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
+      pixel_size_xy_um:
+        LOCI_DETECTOR_TELEDYNE_001: 0.2271
+        LOCI_DETECTOR_JAI_001: 0.1725
+    - id: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
+      pixel_size_xy_um:
+        LOCI_DETECTOR_TELEDYNE_001: 0.1142
+        LOCI_DETECTOR_JAI_001: 0.0871
 
-    - objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
-      settings:
-        autofocus:
-          n_steps: 30
-          search_range_um: 15
-          n_tiles: 5
-        pixel_size_xy_um:
-          LOCI_DETECTOR_TELEDYNE_001: 0.2271
-          LOCI_DETECTOR_JAI_001: 0.1725
-
-    - objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
-      settings:
-        pixel_size_xy_um:
-          LOCI_DETECTOR_TELEDYNE_001: 0.1142
-          LOCI_DETECTOR_JAI_001: 0.0871
-
-  profiles:
-    # ===== PPM PROFILES =====
-    - modality: 'ppm'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
-      detector: 'LOCI_DETECTOR_TELEDYNE_001'
-
-    - modality: 'ppm'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
-      detector: 'LOCI_DETECTOR_JAI_001'
-
-    - modality: 'ppm'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
-      detector: 'LOCI_DETECTOR_TELEDYNE_001'
-
-    - modality: 'ppm'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
-      detector: 'LOCI_DETECTOR_JAI_001'
-
-    - modality: 'ppm'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
-      detector: 'LOCI_DETECTOR_TELEDYNE_001'
-
-    - modality: 'ppm'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
-      detector: 'LOCI_DETECTOR_JAI_001'
-
-    # ===== BRIGHTFIELD PROFILES =====
-    - modality: 'brightfield'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
-      detector: 'LOCI_DETECTOR_TELEDYNE_001'
-
-    - modality: 'brightfield'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_10X_001'
-      detector: 'LOCI_DETECTOR_JAI_001'
-
-    - modality: 'brightfield'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
-      detector: 'LOCI_DETECTOR_TELEDYNE_001'
-
-    - modality: 'brightfield'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_20X_POL_001'
-      detector: 'LOCI_DETECTOR_JAI_001'
-
-    - modality: 'brightfield'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
-      detector: 'LOCI_DETECTOR_TELEDYNE_001'
-
-    - modality: 'brightfield'
-      objective: 'LOCI_OBJECTIVE_OLYMPUS_40X_POL_001'
-      detector: 'LOCI_DETECTOR_JAI_001'
+  detectors:
+    - 'LOCI_DETECTOR_TELEDYNE_001'   # MicroPublisher 6
+    - 'LOCI_DETECTOR_JAI_001'        # JAI prism detector
 
 # ========== STAGE CONFIGURATION ==========
 stage:
