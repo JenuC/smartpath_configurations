@@ -1,3 +1,7 @@
 .ipynb_checkpoints
 *.tif
-autofocus_tests
+
+# Test results directories
+autofocus_tests/
+ppm_sensitivity_tests/
+ppm_birefringence_tests/
