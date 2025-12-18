@@ -65,12 +65,14 @@ hardware:
 stage:
   stage_id: 'LOCI_STAGE_PRIOR_001'  # Prior XYZ stage
   limits:
+    # XY limits should match or exceed aperture calibration bounds
+    # (aperture_left/right_x_um, aperture_top/bottom_y_um in insert config below)
     x_um:
-      low: -17000
-      high: 33000
+      low: -36000   # Must be <= aperture_right_x_um (-35085)
+      high: 34000   # Must be >= aperture_left_x_um (33404)
     y_um:
-      low: -12000
-      high: 13000
+      low: -39000   # Must be <= aperture_bottom_y_um (-38294)
+      high: 34000   # Must be >= aperture_top_y_um (33007)
     z_um:
       low: -5601 #stage raised with sample close to objective, this is the important one to NOT DAMAGE OBJECTIVE. SET CAREFULLY WITH HIGHEST POWER OBJECTIVE.
       high: -1600 #stage lowered far from objective

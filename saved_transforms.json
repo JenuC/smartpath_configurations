@@ -18,8 +18,8 @@
       "saturationMin": 0.3,
       "brightnessMin": 0.3,
       "brightnessMax": 0.9,
-      "minBoxWidth": 100,
-      "minBoxHeight": 100,
+      "minBoxWidth": 20,
+      "minBoxHeight": 20,
       "edgeThickness": 3,
       "requireRectangle": true
     }
@@ -43,8 +43,8 @@
       "saturationMin": 0.3,
       "brightnessMin": 0.3,
       "brightnessMax": 0.9,
-      "minBoxWidth": 100,
-      "minBoxHeight": 100,
+      "minBoxWidth": 20,
+      "minBoxHeight": 20,
       "edgeThickness": 3,
       "requireRectangle": true
     }
