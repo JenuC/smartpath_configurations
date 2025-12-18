@@ -75,6 +75,78 @@ stage:
       low: -5601 #stage raised with sample close to objective, this is the important one to NOT DAMAGE OBJECTIVE. SET CAREFULLY WITH HIGHEST POWER OBJECTIVE.
       high: -1600 #stage lowered far from objective
 
+  # ========== STAGE INSERT CONFIGURATION ==========
+  # Defines the viewable aperture (light transmission window) for each insert type.
+  # Only the aperture area is shown in the Stage Map.
+  #
+  # CALIBRATION using 4 reference points (center the objective on each edge):
+  #   1. aperture_left_x_um:  Left edge of aperture (black edge in center of FOV)
+  #   2. aperture_right_x_um: Right edge of aperture (black edge in center of FOV)
+  #   3. slide_top_y_um:      Top edge of slide glass (edge in center of FOV)
+  #   4. slide_bottom_y_um:   Bottom edge of slide glass (edge in center of FOV)
+  #
+  # The system calculates aperture width from left/right X coordinates.
+  # Aperture height is estimated (default 60mm) - exact value less critical.
+  # The slide is assumed centered vertically within the aperture.
+  inserts:
+    # Safety margin around slides for "legal zone" computation (um)
+    slide_margin_um: 2000
+
+    # Default insert configuration to use
+    default: single_h
+
+    # Insert configurations - each defines its own aperture size and slide positions
+    configurations:
+      single_h:
+        name: "Single Slide (Horizontal)"
+        description: "Standard single slide holder with horizontal orientation"
+
+        # ---------- CALIBRATION REFERENCE POINTS ----------
+        # Measure these 4 positions with objective centered on each edge:
+        aperture_left_x_um: 0      # Stage X when left aperture edge is centered
+        aperture_right_x_um: 55000 # Stage X when right aperture edge is centered
+        slide_top_y_um: 0          # Stage Y when top of slide glass is centered
+        slide_bottom_y_um: 25000   # Stage Y when bottom of slide glass is centered
+
+        # Estimated aperture height (vertical) - less critical for accuracy
+        aperture_height_mm: 60.0   # ~6cm vertical opening
+
+        # Slide dimensions (standard 1" x 3" slide)
+        slide_width_mm: 75         # 3 inches
+        slide_height_mm: 25        # 1 inch
+
+      single_v:
+        name: "Single Slide (Vertical)"
+        description: "Standard single slide holder with vertical orientation"
+
+        # Calibration reference points (measure when using this insert)
+        aperture_left_x_um: 0
+        aperture_right_x_um: 60000
+        slide_top_y_um: 0
+        slide_bottom_y_um: 75000   # Slide is 75mm tall when vertical
+
+        aperture_height_mm: 55.0
+        slide_width_mm: 25         # Rotated
+        slide_height_mm: 75
+
+      quad_v:
+        name: "Four Slides (Vertical)"
+        description: "Four slides arranged vertically"
+
+        # Calibration reference points
+        aperture_left_x_um: 0
+        aperture_right_x_um: 120000
+        slide_top_y_um: 0
+        slide_bottom_y_um: 75000
+
+        aperture_height_mm: 55.0
+        slide_width_mm: 25
+        slide_height_mm: 75
+
+        # Spacing between slides (center-to-center distance)
+        slide_spacing_mm: 30.0
+        num_slides: 4
+
 # ========== GENERAL SETTINGS ==========
 slide_size_um:
   x: 40000
