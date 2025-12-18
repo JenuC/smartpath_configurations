@@ -103,10 +103,10 @@ stage:
 
         # ---------- CALIBRATION REFERENCE POINTS ----------
         # Measure these 4 positions with objective centered on each edge:
-        aperture_left_x_um: 0      # Stage X when left aperture edge is centered
-        aperture_right_x_um: 55000 # Stage X when right aperture edge is centered
-        slide_top_y_um: 0          # Stage Y when top of slide glass is centered
-        slide_bottom_y_um: 25000   # Stage Y when bottom of slide glass is centered
+        aperture_left_x_um: 33404      # Stage X when left aperture edge is centered
+        aperture_right_x_um: -35085 # Stage X when right aperture edge is centered
+        slide_top_y_um: 12220          # Stage Y when top of slide glass is centered
+        slide_bottom_y_um: -11654   # Stage Y when bottom of slide glass is centered
 
         # Estimated aperture height (vertical) - less critical for accuracy
         aperture_height_mm: 60.0   # ~6cm vertical opening
